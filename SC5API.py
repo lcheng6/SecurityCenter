@@ -6,7 +6,7 @@ requests.packages.urllib3.disable_warnings()
 
 
 class SecurityCenterAPI: 
-    url = "https://"
+    url = "https://10.14.226.13"
     username = ""
     password = ""
     token = ''
