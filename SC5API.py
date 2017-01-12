@@ -58,7 +58,7 @@ class SecurityCenterAPI:
 
         # We use the connect function and pass it a POST method, /rest/token resource,
         # and our login credentials as data.  We also pass our headers from above for this function.
-        data = connect('POST', '/rest/token', data=login, headers=headers)
+        data = self.connect('POST', '/rest/token', data=login, headers=headers)
 
         # We can pull the cookie out of our data object and store it as a variable.
         self.cookie = data.cookies
@@ -74,7 +74,7 @@ class SecurityCenterAPI:
             assets = []
 
             # Use the connect function with a GET method and /rest/asset resource.
-            data = connect('GET', '/rest/asset')
+            data = self.connect('GET', '/rest/asset')
 
             # Store the manageable assets in the results variable.
             results = data.json()['response']['manageable']
