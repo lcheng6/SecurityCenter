@@ -28,16 +28,16 @@ class SecurityCenterAPI:
             data = json.dumps(data)
 
         if method == "POST":
-            r = requests.post(build_url(resource), data=data, headers=headers, cookies=self.cookie,
+            r = requests.post(self.build_url(resource), data=data, headers=headers, cookies=self.cookie,
                             verify=False)
         elif method == "DELETE":
-            r = requests.delete(build_url(resource), data=data, headers=headers, cookies=self.cookie,
+            r = requests.delete(self.build_url(resource), data=data, headers=headers, cookies=self.cookie,
                                 verify=False)
         elif method == 'PATCH':
-            r = requests.patch(build_url(resource), data=data, headers=headers, cookies=self.cookie,
+            r = requests.patch(self.build_url(resource), data=data, headers=headers, cookies=self.cookie,
                             verify=False)
         else:
-            r = requests.get(build_url(resource), data=data, headers=headers, cookies=self.cookie,
+            r = requests.get(self.build_url(resource), data=data, headers=headers, cookies=self.cookie,
                             verify=False)
 
         if r.status_code != 200:
