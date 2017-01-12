@@ -17,7 +17,7 @@ class SecurityCenterAPI:
         
     def build_url(self, restCall):
         """ Formats the SC URL with the rest API call"""
-        return '{0}{1}'.format(url, restCall)
+        return '{0}{1}'.format(self.url, restCall)
 
     def connect(self, method, resource, data=None, headers=None, cookies=None):
         """ The connect method is used to connect to SC and pass our API calls."""
