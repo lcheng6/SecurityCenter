@@ -5,10 +5,6 @@ import requests
 requests.packages.urllib3.disable_warnings()
 
 
-# Do not fill in these variables
-token = ''
-cookie = ''
-
 class SecurityCenterAPI: 
     url = "https://"
     username = ""
