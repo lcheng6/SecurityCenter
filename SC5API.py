@@ -92,7 +92,7 @@ class SecurityCenterAPI:
 
     def get_asset_by_id(self, id):
         #Get the asset group by its id.  The ID should be a number
-        data = self.connect('GET', 'rest/asset/{0}'.format(id);
+        data = self.connect('GET', 'rest/asset/{0}'.format(id))
         results = data.json()['response'];
         
         if not results:
