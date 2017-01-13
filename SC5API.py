@@ -97,6 +97,6 @@ class SecurityCenterAPI:
         
         if not results:
             sys.exit("no managed assets")
-        else
+        else: 
             return results;
         
