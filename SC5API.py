@@ -71,7 +71,7 @@ class SecurityCenterAPI:
 
     # ------ UNCOMMENT THE CODE BELOW TO ENABLE THE FUNCTION.  THIS WAS LEFT IN FOR REFERENCE. ------ #
     # ------    LINES WITH '##' ARE COMMENTS, YOU DO NOT NEED TO UNCOMMENT THOSE LINES.        ------ #
-    def get_assets():
+    def get_assets(self):
         # Initiate an empty asset list.
         assets = []
 
