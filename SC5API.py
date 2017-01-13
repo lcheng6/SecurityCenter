@@ -90,4 +90,13 @@ class SecurityCenterAPI:
                 assets.append(i['id'])
         return assets
 
-
+    def get_asset_by_id(self, id):
+        #Get the asset group by its id.  The ID should be a number
+        data = self.connect('GET', 'rest/asset/{0}'.format(id);
+        results = data.json()['response'];
+        
+        if not results:
+            sys.exit("no managed assets")
+        else
+            return results;
+        
