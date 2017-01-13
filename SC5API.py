@@ -14,7 +14,10 @@ class SecurityCenterAPI:
 
     def __init__(self): 
         self.data = {}
-        
+    
+	def set_url(self, url):
+		self.url = url
+		
     def build_url(self, restCall):
         """ Formats the SC URL with the rest API call"""
         return '{0}{1}'.format(self.url, restCall)
