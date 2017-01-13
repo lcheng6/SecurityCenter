@@ -1,4 +1,3 @@
-
 import json
 import sys
 import requests
@@ -70,25 +69,25 @@ class SecurityCenterAPI:
         self.token = data.json()['response']['token']
         return (self.cookie, self.token)
 
-# ------ UNCOMMENT THE CODE BELOW TO ENABLE THE FUNCTION.  THIS WAS LEFT IN FOR REFERENCE. ------ #
-# ------    LINES WITH '##' ARE COMMENTS, YOU DO NOT NEED TO UNCOMMENT THOSE LINES.        ------ #
-        def get_assets():
-            # Initiate an empty asset list.
-            assets = []
+	# ------ UNCOMMENT THE CODE BELOW TO ENABLE THE FUNCTION.  THIS WAS LEFT IN FOR REFERENCE. ------ #
+	# ------    LINES WITH '##' ARE COMMENTS, YOU DO NOT NEED TO UNCOMMENT THOSE LINES.        ------ #
+	def get_assets():
+		# Initiate an empty asset list.
+		assets = []
 
-            # Use the connect function with a GET method and /rest/asset resource.
-            data = self.connect('GET', '/rest/asset')
+		# Use the connect function with a GET method and /rest/asset resource.
+		data = self.connect('GET', '/rest/asset')
 
-            # Store the manageable assets in the results variable.
-            results = data.json()['response']['manageable']
+		# Store the manageable assets in the results variable.
+		results = data.json()['response']['manageable']
 
-            # If results is empty, there are no manageable assets and the script exits.
-            if not results:
-                sys.exit("This user has no managed assets.")
-            else:
-                # For each asset in our results file, append the asset ID to our asset list.
-                for i in results:
-                    assets.append(i['id'])
-            return assets
+		# If results is empty, there are no manageable assets and the script exits.
+		if not results:
+			sys.exit("This user has no managed assets.")
+		else:
+			# For each asset in our results file, append the asset ID to our asset list.
+			for i in results:
+				assets.append(i['id'])
+		return assets
 
 
