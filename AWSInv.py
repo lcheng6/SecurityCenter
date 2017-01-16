@@ -11,7 +11,7 @@ from sys import exit
 
 class AWSInventory:
     appliances = [];
-    appliaceList = 'appliances.txt';
+    applianceList = 'appliances.txt';
     windowsHosts = [];
     linuxHosts = [];
     applianceHosts = [];
