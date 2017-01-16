@@ -71,7 +71,7 @@ class AWSInventory:
                     else:
                         self.linuxHosts.append(privateIP)
 
-        return true;
+        return True;
         
     def get_appliance_hosts(self):
         return self.applianceHosts
