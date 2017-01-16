@@ -40,7 +40,7 @@ class AWSInventory:
         self.linuxHosts = []
         self.applianceHosts = []
         try:
-            appliances = [line.rstrip() for line in open(applianceList)]
+            appliances = [line.rstrip() for line in open(self.applianceList)]
         except Exception as e:
             #logger.error("Error while attempting to read appliances host list. Error is: {0}".format(e))
             print ("Error while attempting to read appliances host list. Error is: {0}".format(e))
