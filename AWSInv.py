@@ -24,6 +24,7 @@ class AWSInventory:
         self.windowsHosts = [];
         self.linuxHosts = [];
         self.applianceHosts = [];
+        self.ec2conn = None;
         
     def set_aws_region(self, region):
         self.region = region
@@ -39,7 +40,8 @@ class AWSInventory:
         self.windowsHosts = []
         self.linuxHosts = []
         self.applianceHosts = []
-        ec2conn = None;
+        self.ec2conn = None;
+        
         try:
             appliances = [line.rstrip() for line in open(self.applianceList)]
         except Exception as e:
@@ -49,14 +51,14 @@ class AWSInventory:
             sys.exit()
 
         try:
-            ec2conn = boto.ec2.connect_to_region(self.region)
+            self.ec2conn = boto.ec2.connect_to_region(self.region)
         except Exception as e:
             #logger.error("Error while connecting to Ec2 to download inventory. Error is: {0}".format(e))
             print ("Error while connecting to Ec2 to download inventory. Error is: {0}".format(e))
             print "Error connecting to EC2 to download inventory. See /var/log/messags for more detail"
             sys.exit()
 
-        reservations = ec2conn.get_all_reservations(filters={'instance-state-name': ['pending','running','shutting-down','stopping','stopped']})
+        reservations = self.ec2conn.get_all_reservations(filters={'instance-state-name': ['pending','running','shutting-down','stopping','stopped']})
         for reservation in reservations:
             for instance in reservation.instances:
                 platform = instance.platform
