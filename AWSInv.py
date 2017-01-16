@@ -71,11 +71,6 @@ class AWSInventory:
                     else:
                         self.linuxHosts.append(privateIP)
 
-        # Convert lists to string for passing to Nessus
-        windowsHostsStr = ','.join(windowsHosts)
-        linuxHostsStr = ','.join(linuxHosts)
-        applianceHostsStr = ','.join(applianceHosts)
-
         return true;
         
     def get_appliance_hosts(self):
