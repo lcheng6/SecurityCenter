@@ -39,6 +39,7 @@ class AWSInventory:
         self.windowsHosts = []
         self.linuxHosts = []
         self.applianceHosts = []
+        ec2conn = None;
         try:
             appliances = [line.rstrip() for line in open(self.applianceList)]
         except Exception as e:
