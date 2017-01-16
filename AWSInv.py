@@ -42,14 +42,16 @@ class AWSInventory:
         try:
             appliances = [line.rstrip() for line in open(applianceList)]
         except Exception as e:
-            logger.error("Error while attempting to read appliances host list. Error is: {0}".format(e))
+            #logger.error("Error while attempting to read appliances host list. Error is: {0}".format(e))
+            print ("Error while attempting to read appliances host list. Error is: {0}".format(e))
             print "Error reading appliances host exclusion list. See /var/log/messages for more detail"
             sys.exit()
 
         try:
             ec2conn = boto.ec2.connect_to_region(self.region)
         except Exception as e:
-            logger.error("Error while connecting to Ec2 to download inventory. Error is: {0}".format(e))
+            #logger.error("Error while connecting to Ec2 to download inventory. Error is: {0}".format(e))
+            print ("Error while connecting to Ec2 to download inventory. Error is: {0}".format(e))
             print "Error connecting to EC2 to download inventory. See /var/log/messags for more detail"
             sys.exit()
 
