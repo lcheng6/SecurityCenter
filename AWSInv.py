@@ -64,12 +64,12 @@ class AWSInventory:
                 platform = instance.platform
                 privateIP = instance.private_ip_address
                 if privateIP in appliances:
-                    applianceHosts.append(privateIP)
+                    self.applianceHosts.append(privateIP)
                 else:
                     if platform == "windows":
-                        windowsHosts.append(privateIP)
+                        self.windowsHosts.append(privateIP)
                     else:
-                        linuxHosts.append(privateIP)
+                        self.linuxHosts.append(privateIP)
 
         # Convert lists to string for passing to Nessus
         windowsHostsStr = ','.join(windowsHosts)
