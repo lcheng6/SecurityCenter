@@ -5,7 +5,7 @@ import argparse
 import pprint
 
 parser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
-pp = pprint.PrettyPrinter(ident=4);
+pp = pprint.PrettyPrinter(indent=4);
 
 parser.add_argument('--hostname', dest = 'hostname', type=str, required=True, help='hostname of the Nessus Security Center')
 parser.add_argument('-u', dest = 'user', type=str, required=True, help='Nessus Security Center username')
