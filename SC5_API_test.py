@@ -19,6 +19,4 @@ url = 'https://' + args.hostname
 api.set_url(url)
 api.login(args.user, args.password)
 
-asset_219 = api.get_asset_by_id(219);
-
-pp.print(asset_219);
+api.update_hosts_by_asset_id(219, '10.191.1.1, 10.191.1.2, 10.191.1.3, 10.191.1.4, 10.191.1.5, 10.191.1.10');

@@ -101,11 +101,11 @@ class SecurityCenterAPI:
         else: 
             return results;
     
-    def post_hosts_to_asset(self, id, hosts_ips):
+    def update_hosts_by_asset_id(self, id, hosts_ips):
         #Post the hosts private IPs to the asset identified by ID
-        patch_records = {'typeFields': {'definedIPs' :'10.195.16.1, 10.195.16.2, 10.195.16.4, 10.195.16.5'}};
+        patch_records = {'definedIPs' :'10.195.16.1, 10.195.16.2, 10.195.16.4, 10.195.16.5'};
         
-        data = self.connect('PATCH', '/rest/asset/{IP}'.format(id), patch_records)
+        data = self.connect('PATCH', '/rest/asset/{0}'.format(id), patch_records)
         results = data.json()['response'];
         
         if not results:
