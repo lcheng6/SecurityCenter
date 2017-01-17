@@ -103,7 +103,7 @@ class SecurityCenterAPI:
     
     def post_hosts_to_asset(self, id, hosts_ips):
         #Post the hosts private IPs to the asset identified by ID
-        patch_records = {typeFields: {definedIPs:'10.195.16.1, 10.195.16.2, 10.195.16.4, 10.195.16.5'}};
+        patch_records = {'typeFields': {'definedIPs' :'10.195.16.1, 10.195.16.2, 10.195.16.4, 10.195.16.5'}};
         
         data = self.connect('PATCH', '/rest/asset/{IP}'.format(id), patch_records)
         results = data.json()['response'];
