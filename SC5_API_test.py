@@ -11,12 +11,12 @@ parser.add_argument('-p', dest = 'password', type=str, required=True, help='Pass
 
 
 args = parser.parse_args()
-if args.user
-    print args.user;
-#api = SC5API.SecurityCenterAPI()
-#api.set_url('https://10.14.226.13')
-#api.login(sys.argv[1], sys.argv[2])
 
-#asset_219 = api.get_asset_by_id(219);
+api = SC5API.SecurityCenterAPI()
+url = 'https://' + args.hostname
+api.set_url(url)
+api.login(args.user, args.password)
 
-#json.dumps(asset_219);
+asset_219 = api.get_asset_by_id(219);
+
+json.dumps(asset_219);
