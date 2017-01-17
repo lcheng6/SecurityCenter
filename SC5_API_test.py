@@ -1,13 +1,13 @@
 import SC5API
 import sys
 import json
-import argpase improt ArugmentParser
+import argparse
 
 parser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
 
-parser.add_argument('-h', dest = 'hostname', type=str, required=True)
-parser.add_argument('-u', dest = 'user', type=str, required=True)
-parser.add_argument('-p', dest = 'password', type=str, required=True)
+parser.add_argument('--hostname', dest = 'hostname', type=str, required=True, help='hostname of the Nessus Security Center')
+parser.add_argument('-u', dest = 'user', type=str, required=True, help='Nessus Security Center username')
+parser.add_argument('-p', dest = 'password', type=str, required=True, help='Password')
 
 
 args = parser.parse_args()
