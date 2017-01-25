@@ -29,8 +29,8 @@ if args.config :
     securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
     
     cmdbElasticSearchHost =configParser.get('CMDBElasticSearch','host')
-    elasticSearchWindowsSearch =configParsser.get('CMDBElasticSearch','windows_search_string')
-    elasticSearchNonWindowsSearch =configParsser.get('CMDBElasticSearch','non_windows_search_string')
+    elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
+    elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
 
 securityCenterURL = 'https://' + securityCenterHost
 securityCenterAPI.set_url(securityCenterURL)
