@@ -53,7 +53,7 @@ if args.config :
 
 
 #Block of code to test CMDB ElasticSearch 
-print "url: " + cmdbAPIInitData.cmdbElasticSearchURL;
+print "url: " + cmdbAPIInitData["cmdbElasticSearchURL"];
 inventoryAPI = CMDBInventory.CMDBInventoryAPI(cmdbAPIInitData)
 
     
