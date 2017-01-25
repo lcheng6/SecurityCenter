@@ -51,6 +51,7 @@ if args.config :
 
 cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
 print "URL: " + cmdbElasticSearchGetURL
+headers = {}
 
 req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch, headers)
 out = urllib2.urlopen(req)
