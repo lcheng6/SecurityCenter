@@ -68,7 +68,8 @@ while (from_index < totalHitCount):
     allHits = data['hits']['hits']
     
     for hit in allHits:
-        print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
+        #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
         print '_id: ' + hit['_id']
+        print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
         from_index = from_index+1
     
