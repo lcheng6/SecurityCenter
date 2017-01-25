@@ -49,7 +49,7 @@ if args.config :
 
 #Block of code to test CMDB ElasticSearch 
 
-cmdbElasticSearchGetURL = "https://" + cmdbElasticSearchHost + "/" + cmdbElasticSearchIndex + "/_search"
+cmdbElasticSearchGetURL = "https://" + cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
 print "URL: " + cmdbElasticSearchGetURL
 
 req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch)
