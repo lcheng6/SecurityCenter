@@ -52,7 +52,7 @@ if args.config :
 cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
 print "URL: " + cmdbElasticSearchGetURL
 
-req = urllib2.Request(cmdbElasticSearchGetURL)
+req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch, headers)
 out = urllib2.urlopen(req)
 data = out.read();
 
