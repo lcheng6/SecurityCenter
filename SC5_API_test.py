@@ -49,13 +49,24 @@ if args.config :
 
 #Block of code to test CMDB ElasticSearch 
 
-cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
-print "URL: " + cmdbElasticSearchGetURL
-headers = {}
+from_index = 0;
+totalHitCount = 1;
 
-req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch, headers)
-out = urllib2.urlopen(req)
-data = out.read();
+while (from_index < totalHitCount):
 
-data = json.loads(data)
-print data['hits']['total']
+    cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
+    print "URL: " + cmdbElasticSearchGetURL
+    headers = {}
+
+    req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch, headers)
+    out = urllib2.urlopen(req)
+    data = out.read();
+
+    data = json.loads(data)
+    totalHitCount = data['hits']['total']
+    allHits = data['hits']['hits']
+    
+    for hit in allHits:
+        print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
+        print '_id: ' + hit['_id']
+    
