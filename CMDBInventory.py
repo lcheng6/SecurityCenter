@@ -42,8 +42,8 @@ class CMDBInventoryAPI:
         
             for hit in allHits:
                 #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
-                print '_id: ' + hit['_id']
-                print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
+                #print '_id: ' + hit['_id']
+                #print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
                 results.append(hit['_source']['json_aws_data_ec2']['private_ip_address']);
                 from_index = from_index + 1
         
@@ -53,22 +53,29 @@ class CMDBInventoryAPI:
         headers = {}
         results = []
         from_index = 0
+        totalHitCount = 1;
         
-        cmdbElasticSearchGetURL = self.cmdbElasticSearchURL + "/" + self.cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(self.elasticSearchSize)
+        while(from_index < totalHitCount):
         
-        req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchNonWindowsSearch, headers)
-        out = urllib2.urlopen(req)
-        data = out.read();
-        data = json.loads(data)
-        totalHitCount = data['hits']['total']
-        allHits = data['hits']['hits']
-        
-        for hit in allHits:
-            #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
-            print '_id: ' + hit['_id']
-            print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
-            from_index = from_index+1
-            results.append(hit['_source']['json_aws_data_ec2']['private_ip_address']);
+            cmdbElasticSearchGetURL = self.cmdbElasticSearchURL + "/" + self.cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(self.elasticSearchSize)
             
-        #TODO: filter out the appliance private IPs
+            req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchNonWindowsSearch, headers)
+            out = urllib2.urlopen(req)
+            data = out.read();
+            data = json.loads(data)
+            totalHitCount = data['hits']['total']
+            allHits = data['hits']['hits']
+            
+            for hit in allHits:
+                #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
+                print '_id: ' + hit['_id']
+                print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
+                results.append(hit['_source']['json_aws_data_ec2']['private_ip_address']);
+                from_index = from_index+1
+                
+                
+            #TODO: filter out the appliance private IPs
         return results;
+        
+    def get_all_hosts_raw_info(self):
+        
