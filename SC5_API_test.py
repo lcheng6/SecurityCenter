@@ -49,11 +49,12 @@ if args.config :
 
 #Block of code to test CMDB ElasticSearch 
 
-cmdbElasticSearchGetURL = "https://" + cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
+cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
 print "URL: " + cmdbElasticSearchGetURL
 
-req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch)
+req = urllib2.Request(cmdbElasticSearchGetURL)
 out = urllib2.urlopen(req)
+data = out.read();
 
 data = json.loads(data)
 print data['hits']['total']
