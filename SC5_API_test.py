@@ -30,7 +30,7 @@ if args.config :
     
     securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
     
-    cmdbElasticSearchURL =configParser.get('CMDBElasticSearch','URL')
+    cmdbElasticSearchURL =configParser.get('CMDBElasticSearch','url')
     cmdbElasticSearchIndex = configParser.get('CMDBElasticSearch', 'index')
     elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
     elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
