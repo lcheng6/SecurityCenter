@@ -23,7 +23,7 @@ argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Co
 args = argParser.parse_args()
 
 securityCenterAPI = SC5API.SecurityCenterAPI()
-
+cmdbAPIInitData = {}
 
 if args.config :
     configFilePath = r'{0}'.format(args.config)
@@ -31,7 +31,6 @@ if args.config :
     
     securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
     
-    cmdbAPIInitData = {}
     cmdbAPIInitData["cmdbElasticSearchURL"] =configParser.get('CMDBElasticSearch','url')
     cmdbAPIInitData["cmdbElasticSearchIndex"] = configParser.get('CMDBElasticSearch', 'index')
     cmdbAPIInitData["elasticSearchWindowsSearch"] =configParser.get('CMDBElasticSearch','windows_search_string')
