@@ -5,6 +5,8 @@ import argparse
 import pprint
 import requests
 import ConfigParser
+import urllib2
+import json
 
 argParser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
 pp = pprint.PrettyPrinter(indent=4);
@@ -48,4 +50,10 @@ if args.config :
 #Block of code to test CMDB ElasticSearch 
 
 cmdbElasticSearchURL = "https://" + cmdbElasticSearchHost + "/" + cmdbElasticSearchIndex + "/_search"
-curl -XGET cmdbElasticSearchURL
+print "URL: " + cmdbElasticSearchURL
+
+req = urllib2.Request(url)
+out = urllib2.urlopen(req)
+data = out.read()
+
+print data;
