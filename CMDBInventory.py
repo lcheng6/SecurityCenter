@@ -44,7 +44,6 @@ class CMDBInventoryAPI:
                 #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
                 print '_id: ' + hit['_id']
                 print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
-                from_index = from_index+1
                 results.append(hit['_source']['json_aws_data_ec2']['private_ip_address']);
                 from_index = from_index + 1
         
