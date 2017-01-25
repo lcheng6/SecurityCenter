@@ -52,7 +52,7 @@ if args.config :
 cmdbElasticSearchURL = "https://" + cmdbElasticSearchHost + "/" + cmdbElasticSearchIndex + "/_search"
 print "URL: " + cmdbElasticSearchURL
 
-req = urllib2.Request(url)
+req = urllib2.Request(cmdbElasticSearchURL)
 out = urllib2.urlopen(req)
 data = out.read()
 
