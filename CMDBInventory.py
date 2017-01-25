@@ -71,5 +71,5 @@ class CMDBInventoryAPI:
         return results;
     
     #return the raaw hits of all instances.  Nothing
-    def get_all_instances_raw_information(self):
+    #def get_all_instances_raw_information(self):
     
