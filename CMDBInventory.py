@@ -8,6 +8,7 @@ class CMDBInventoryAPI:
     elasticSearchWindowsSearch = ""
     elasticSearchNonWindowsSearch = ""
     elasticSearchSize = ""
+    applianceIPListFile = ""
     
     #the initData is the config block in SecurityCenterAutomation.config, which will include the following:
     # url of Elastic Search 
@@ -22,7 +23,14 @@ class CMDBInventoryAPI:
         self.elasticSearchWindowsSearch = initData["elasticSearchWindowsSearch"]
         self.elasticSearchNonWindowsSearch = initData["elasticSearchNonWindowsSearch"]
         self.elasticSearchSize = initData["elasticSearchSize"]
+        self.applianceIPListFile = initData["appliance_exclusion_file"]
         self.applianceIPDictionary = {}
+        
+        applianceIPFile = open(self.applianceIPListFile, "r");
+        applianceIPList = applianceIPFile.readlines();
+        for ipStr in applianceIPList:
+            ipAddr = ipStr.strip();
+            self.applianceIPDictionary[ipAddr] = True;
     
     def get_windows_instance_private_IPs(self):
         headers = {}
@@ -74,8 +82,17 @@ class CMDBInventoryAPI:
                 from_index = from_index+1
                 
                 
-            #TODO: filter out the appliance private IPs
-        return results;
+        #TODO: filter out the appliance private IPs
+        
+        filteredResults = [];
+        for unfiltereIP in results:
+            if unfiltereIP in self.applianceIPDictionary.keys():
+                #do nothing
+            else 
+                #add the IP into filteredResults set
+                filteredResults.append(unfiltereIP);
+        
+        return filteredResults;
         
     def get_all_hosts_raw_info(self):
         
