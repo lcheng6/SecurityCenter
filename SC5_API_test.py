@@ -52,8 +52,8 @@ if args.config :
 cmdbElasticSearchGetURL = "https://" + cmdbElasticSearchHost + "/" + cmdbElasticSearchIndex + "/_search"
 print "URL: " + cmdbElasticSearchGetURL
 
-req = urllib2.Request(cmdbElasticSearchGetURL)
+req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch)
 out = urllib2.urlopen(req)
-data = out.read()
 
-print data;
+data = json.loads(data)
+print data['hits']['total']
