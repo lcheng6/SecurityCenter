@@ -32,12 +32,18 @@ if args.config :
     elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
     elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
 
-securityCenterURL = 'https://' + securityCenterHost
-securityCenterAPI.set_url(securityCenterURL)
-securityCenterAPI.login(args.user, args.password)
+#Block of code to test Security Center API Access
+#securityCenterURL = 'https://' + securityCenterHost
+#securityCenterAPI.set_url(securityCenterURL)
+#securityCenterAPI.login(args.user, args.password)
 
-securityCenterAPI.update_hosts_by_asset_id(219, '10.191.1.1, 10.191.1.2, 10.191.1.3, 10.191.1.4, 10.191.1.5, 10.191.1.10/32');
+#securityCenterAPI.update_hosts_by_asset_id(219, '10.191.1.1, 10.191.1.2, 10.191.1.3, 10.191.1.4, 10.191.1.5, 10.191.1.10/32');
 
-asset_219 = securityCenterAPI.get_asset_by_id(219);
+#asset_219 = securityCenterAPI.get_asset_by_id(219);
 
-pp.pprint(asset_219);
+#pp.pprint(asset_219);
+
+
+#Block of code to test CMDB ElasticSearch 
+print "elasticSearchWindowsSearch: " + elasticSearchWindowsSearch
+print "elasticSearchNonWindowsSearch: " + elasticSearchNonWindowsSearch
