@@ -34,6 +34,7 @@ if args.config :
     cmdbElasticSearchIndex = configParser.get('CMDBElasticSearch', 'index')
     elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
     elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
+    elasticSearchSize=configParser.get('CMDBElasticSearch','search_size')
 
 #Block of code to test Security Center API Access
 #securityCenterURL = 'https://' + securityCenterHost
@@ -54,7 +55,7 @@ totalHitCount = 1;
 
 while (from_index < totalHitCount):
 
-    cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search"
+    cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search?from=" + from_index + "size="+elasticSearchSize
     print "URL: " + cmdbElasticSearchGetURL
     headers = {}
 
