@@ -6,7 +6,7 @@ import pprint
 import requests
 import ConfigParser
 import urllib2
-import json
+import CMDBInventory
 
 argParser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
 pp = pprint.PrettyPrinter(indent=4);
@@ -24,17 +24,22 @@ args = argParser.parse_args()
 
 securityCenterAPI = SC5API.SecurityCenterAPI()
 
+
 if args.config :
     configFilePath = r'{0}'.format(args.config)
     configParser.read(configFilePath)
     
     securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
     
-    cmdbElasticSearchURL =configParser.get('CMDBElasticSearch','url')
-    cmdbElasticSearchIndex = configParser.get('CMDBElasticSearch', 'index')
-    elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
-    elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
-    elasticSearchSize=configParser.get('CMDBElasticSearch','search_size')
+    cmdbAPIInitData = {}
+    cmdbAPIInitData.cmdbElasticSearchURL =configParser.get('CMDBElasticSearch','url')
+    cmdbAPIInitData.cmdbElasticSearchIndex = configParser.get('CMDBElasticSearch', 'index')
+    cmdbAPIInitData.elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
+    cmdbAPIInitData.elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
+    cmdbAPIInitData.elasticSearchSize=configParser.get('CMDBElasticSearch','search_size')
+    
+    
+
 
 #Block of code to test Security Center API Access
 #securityCenterURL = 'https://' + securityCenterHost
@@ -50,26 +55,6 @@ if args.config :
 
 #Block of code to test CMDB ElasticSearch 
 
-from_index = 0;
-totalHitCount = 1;
+inventoryAPI = CMDBInventory.CMDBInventoryAPI(cmdbAPIInitData)
 
-while (from_index < totalHitCount):
-
-    cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(elasticSearchSize)
-    print "URL: " + cmdbElasticSearchGetURL
-    headers = {}
-
-    req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchWindowsSearch, headers)
-    out = urllib2.urlopen(req)
-    data = out.read();
-
-    data = json.loads(data)
-    totalHitCount = data['hits']['total']
-    allHits = data['hits']['hits']
-    
-    for hit in allHits:
-        #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
-        print '_id: ' + hit['_id']
-        print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
-        from_index = from_index+1
     
