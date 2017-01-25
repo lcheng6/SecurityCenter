@@ -32,11 +32,11 @@ if args.config :
     securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
     
     cmdbAPIInitData = {}
-    cmdbAPIInitData.cmdbElasticSearchURL =configParser.get('CMDBElasticSearch','url')
-    cmdbAPIInitData.cmdbElasticSearchIndex = configParser.get('CMDBElasticSearch', 'index')
-    cmdbAPIInitData.elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
-    cmdbAPIInitData.elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
-    cmdbAPIInitData.elasticSearchSize=configParser.get('CMDBElasticSearch','search_size')
+    cmdbAPIInitData["cmdbElasticSearchURL"] =configParser.get('CMDBElasticSearch','url')
+    cmdbAPIInitData["cmdbElasticSearchIndex"] = configParser.get('CMDBElasticSearch', 'index')
+    cmdbAPIInitData["elasticSearchWindowsSearch"] =configParser.get('CMDBElasticSearch','windows_search_string')
+    cmdbAPIInitData["elasticSearchNonWindowsSearch"] =configParser.get('CMDBElasticSearch','non_windows_search_string')
+    cmdbAPIInitData["elasticSearchSize"]=configParser.get('CMDBElasticSearch','search_size')
     
     
 
