@@ -17,11 +17,11 @@ class CMDBInventoryAPI:
     # search_size
     # appliance_exlusion_file
     def __init__(self, initData):
-        self.cmdbElasticSearchURL = initData.cmdbElasticSearchURL
-        self.cmdbElasticSearchIndex = initData.cmdbElasticSearchIndex
-        self.elasticSearchWindowsSearch = initData.elasticSearchWindowsSearch
-        self.elasticSearchNonWindowsSearch = initData.elasticSearchNonWindowsSearch
-        self.elasticSearchSize = initData.elasticSearchSize
+        self.cmdbElasticSearchURL = initData["cmdbElasticSearchURL"]
+        self.cmdbElasticSearchIndex = initData["cmdbElasticSearchIndex"]
+        self.elasticSearchWindowsSearch = initData["elasticSearchWindowsSearch"]
+        self.elasticSearchNonWindowsSearch = initData["elasticSearchNonWindowsSearch"]
+        self.elasticSearchSize = initData["elasticSearchSize"]
         self.applianceIPDictionary = {}
     
     def get_windows_instance_private_IPs(self):
