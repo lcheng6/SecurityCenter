@@ -22,7 +22,7 @@ args = parser.parse_args()
 
 securityCenterAPI = SC5API.SecurityCenterAPI()
 
-if(args.config) {
+if args.config :
     configFilePath = r'{0}'.format(args.config)
     configParser.read(configFilePath)
     
@@ -31,7 +31,6 @@ if(args.config) {
     cmdbElasticSearchHost =configParser.get('CMDBElasticSearch','host')
     elasticSearchWindowsSearch =configParsser.get('CMDBElasticSearch','windows_search_string')
     elasticSearchNonWindowsSearch =configParsser.get('CMDBElasticSearch','non_windows_search_string')
-}
 
 securityCenterURL = 'https://' + securityCenterHost
 securityCenterAPI.set_url(securityCenterURL)
