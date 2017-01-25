@@ -69,4 +69,5 @@ while (from_index < totalHitCount):
     for hit in allHits:
         print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
         print '_id: ' + hit['_id']
+        from_index = from_index+1
     
