@@ -55,7 +55,7 @@ totalHitCount = 1;
 
 while (from_index < totalHitCount):
 
-    cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "size="+str(elasticSearchSize)
+    cmdbElasticSearchGetURL = cmdbElasticSearchURL + "/" + cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(elasticSearchSize)
     print "URL: " + cmdbElasticSearchGetURL
     headers = {}
 
