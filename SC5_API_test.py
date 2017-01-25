@@ -18,7 +18,7 @@ argParser.add_argument('-p', dest = 'password', type=str, required=True, help='P
 argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Configuration File')
 
 
-args = parser.parse_args()
+args = argParser.parse_args()
 
 securityCenterAPI = SC5API.SecurityCenterAPI()
 
