@@ -30,7 +30,7 @@ if args.config :
     
     securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
     
-    cmdbElasticSearchHost =configParser.get('CMDBElasticSearch','host')
+    cmdbElasticSearchURL =configParser.get('CMDBElasticSearch','URL')
     cmdbElasticSearchIndex = configParser.get('CMDBElasticSearch', 'index')
     elasticSearchWindowsSearch =configParser.get('CMDBElasticSearch','windows_search_string')
     elasticSearchNonWindowsSearch =configParser.get('CMDBElasticSearch','non_windows_search_string')
@@ -49,10 +49,10 @@ if args.config :
 
 #Block of code to test CMDB ElasticSearch 
 
-cmdbElasticSearchURL = "https://" + cmdbElasticSearchHost + "/" + cmdbElasticSearchIndex + "/_search"
-print "URL: " + cmdbElasticSearchURL
+cmdbElasticSearchGetURL = "https://" + cmdbElasticSearchHost + "/" + cmdbElasticSearchIndex + "/_search"
+print "URL: " + cmdbElasticSearchGetURL
 
-req = urllib2.Request(cmdbElasticSearchURL)
+req = urllib2.Request(cmdbElasticSearchGetURL)
 out = urllib2.urlopen(req)
 data = out.read()
 
