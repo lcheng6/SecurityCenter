@@ -30,7 +30,7 @@ class CMDBInventoryAPI:
         from_index = 0;
         
         cmdbElasticSearchGetURL = self.cmdbElasticSearchURL + "/" + self.cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(self.elasticSearchSize)
-        req = urllib2.Request(self.cmdbElasticSearchGetURL, self.elasticSearchWindowsSearch, headers)
+        req = urllib2.Request(cmdbElasticSearchGetURL, self.elasticSearchWindowsSearch, headers)
         out = urllib2.urlopen(req)
         data = out.read();
         data = json.loads(data)
