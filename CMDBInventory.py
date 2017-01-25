@@ -27,22 +27,26 @@ class CMDBInventoryAPI:
     def get_windows_instance_private_IPs(self):
         headers = {}
         results = [];
-        from_index = 0;
+        from_index = 0
+        totalHitCount = 1
         
-        cmdbElasticSearchGetURL = self.cmdbElasticSearchURL + "/" + self.cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(self.elasticSearchSize)
-        req = urllib2.Request(cmdbElasticSearchGetURL, self.elasticSearchWindowsSearch, headers)
-        out = urllib2.urlopen(req)
-        data = out.read();
-        data = json.loads(data)
-        totalHitCount = data['hits']['total']
-        allHits = data['hits']['hits']
+        while(from_index < totalHitCount):
         
-        for hit in allHits:
-            #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
-            print '_id: ' + hit['_id']
-            print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
-            from_index = from_index+1
-            results.append(hit['_source']['json_aws_data_ec2']['private_ip_address']);
+            cmdbElasticSearchGetURL = self.cmdbElasticSearchURL + "/" + self.cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(self.elasticSearchSize)
+            req = urllib2.Request(cmdbElasticSearchGetURL, self.elasticSearchWindowsSearch, headers)
+            out = urllib2.urlopen(req)
+            data = out.read();
+            data = json.loads(data)
+            totalHitCount = data['hits']['total']
+            allHits = data['hits']['hits']
+        
+            for hit in allHits:
+                #print '_source/json_aws_data_ec2/platform: ' + hit['_source']['json_aws_data_ec2']['platform']
+                print '_id: ' + hit['_id']
+                print 'privateIP: ' + hit['_source']['json_aws_data_ec2']['private_ip_address']
+                from_index = from_index+1
+                results.append(hit['_source']['json_aws_data_ec2']['private_ip_address']);
+                from_index = from_index + 1
         
         return results
     
