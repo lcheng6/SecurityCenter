@@ -88,7 +88,7 @@ class CMDBInventoryAPI:
         for unfiltereIP in results:
             if unfiltereIP in self.applianceIPDictionary.keys():
                 #do nothing
-            else 
+            else :
                 #add the IP into filteredResults set
                 filteredResults.append(unfiltereIP);
         
