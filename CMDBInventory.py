@@ -67,7 +67,7 @@ class CMDBInventoryAPI:
         
             cmdbElasticSearchGetURL = self.cmdbElasticSearchURL + "/" + self.cmdbElasticSearchIndex + "/_search?from=" + str(from_index) + "&size="+str(self.elasticSearchSize)
             
-            req = urllib2.Request(cmdbElasticSearchGetURL, elasticSearchNonWindowsSearch, headers)
+            req = urllib2.Request(cmdbElasticSearchGetURL, self.elasticSearchNonWindowsSearch, headers)
             out = urllib2.urlopen(req)
             data = out.read();
             data = json.loads(data)
@@ -82,8 +82,7 @@ class CMDBInventoryAPI:
                 from_index = from_index+1
                 
                 
-        #TODO: filter out the appliance private IPs
-        
+        #Filtering out all the IPs stored in the appliance IPs list.  
         filteredResults = [];
         for unfiltereIP in results:
             if unfiltereIP in self.applianceIPDictionary.keys():
