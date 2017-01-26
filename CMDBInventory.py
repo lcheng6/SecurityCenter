@@ -96,4 +96,4 @@ class CMDBInventoryAPI:
         return filteredResults;
         
     def get_all_hosts_raw_info(self):
-        
+        pass
