@@ -60,4 +60,8 @@ windowsIPs = inventoryAPI.get_windows_instance_private_IPs()
 for ip in windowsIPs:
     print "Windows IP: " + ip
 
+linuxIPs = inventoryAPI.get_linux_instance_private_IPs()
+
+for ip in linuxIPs:
+    print "Linux IP: " + ip
     
