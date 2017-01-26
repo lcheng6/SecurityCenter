@@ -41,11 +41,9 @@ if args.config :
 
 
 #Block of code to test Security Center API Access
-#securityCenterURL = 'https://' + securityCenterHost
-#securityCenterAPI.set_url(securityCenterURL)
-#securityCenterAPI.login(args.user, args.password)
-
-#securityCenterAPI.update_hosts_by_asset_id(219, '10.191.1.1, 10.191.1.2, 10.191.1.3, 10.191.1.4, 10.191.1.5, 10.191.1.10/32');
+securityCenterURL = 'https://' + securityCenterHost
+securityCenterAPI.set_url(securityCenterURL)
+securityCenterAPI.login(args.user, args.password)
 
 #asset_219 = securityCenterAPI.get_asset_by_id(219);
 
@@ -59,9 +57,13 @@ windowsIPs = inventoryAPI.get_windows_instance_private_IPs()
 
 for ip in windowsIPs:
     print "Windows IP: " + ip
+    
+securityCenterAPI.update_hosts_by_asset_id(219, "");
+securityCenterAPI.update_hosts_by_asset_id(219, 
 
 linuxIPs = inventoryAPI.get_linux_instance_private_IPs()
 
 for ip in linuxIPs:
     print "Linux IP: " + ip
+
     

@@ -103,7 +103,8 @@ class SecurityCenterAPI:
     
     def update_hosts_by_asset_id(self, id, hosts_ips):
         #Post the hosts private IPs to the asset identified by ID
-        patch_records = {'definedIPs' :'10.195.16.1, 10.195.16.2, 10.195.16.4, 10.195.16.5'};
+        #hosts_ips is an array of ips.  
+        patch_records = {'definedIPs' : ', '.join(hosts_ips)};
         
         data = self.connect('PATCH', '/rest/asset/{0}'.format(id), patch_records)
         results = data.json()['response'];
