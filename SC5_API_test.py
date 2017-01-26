@@ -36,7 +36,7 @@ if args.config :
     cmdbAPIInitData["elasticSearchWindowsSearch"] =configParser.get('CMDBElasticSearch','windows_search_string')
     cmdbAPIInitData["elasticSearchNonWindowsSearch"] =configParser.get('CMDBElasticSearch','non_windows_search_string')
     cmdbAPIInitData["elasticSearchSize"]=configParser.get('CMDBElasticSearch','search_size')
-    
+    cmdbAPIInitData["appliance_exclusion_file"]=configParser.get('CMDBElasticSearch', 'appliance_exclusion_file');
     
 
 
