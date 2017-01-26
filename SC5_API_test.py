@@ -58,8 +58,8 @@ windowsIPs = inventoryAPI.get_windows_instance_private_IPs()
 for ip in windowsIPs:
     print "Windows IP: " + ip
     
-securityCenterAPI.update_hosts_by_asset_id(219, "");
-securityCenterAPI.update_hosts_by_asset_id(219, 
+securityCenterAPI.update_hosts_by_asset_id(219, "")
+securityCenterAPI.update_hosts_by_asset_id(219, windowsIPs)
 
 linuxIPs = inventoryAPI.get_linux_instance_private_IPs()
 
