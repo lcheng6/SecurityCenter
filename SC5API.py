@@ -129,7 +129,7 @@ class SecurityCenterAPI:
                 "tool":"sumid",
                 "sourceType":"individual",
                 "startOffset":0,
-                "endOffset":50,
+                "endOffset":1000,
                 "filters":[],
                 "sortColumn":"severity",
                 "sortDirection":"desc",
