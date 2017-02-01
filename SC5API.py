@@ -127,7 +127,7 @@ class SecurityCenterAPI:
             "sortField": "severity",
             "sourceType": "indivdual"
         };
-        data = self.connect('POST', '/rest/analysis', data);
+        data = self.connect('POST', '/rest/analysis', query_data);
         results = data.json()['response'];
         if not results: 
             sys.exit("No response from patch operation");
