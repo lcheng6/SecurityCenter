@@ -117,8 +117,8 @@ class SecurityCenterAPI:
     def get_analysis_by_id(self, id): 
         #Post the hosts with a commmand to get analysis by ID.  
         query_data = {
-            "query":
-                {"name":"",
+            "query": {
+                "name":"",
                 "description":"",
                 "context":"",
                 "status":-1,
@@ -135,16 +135,16 @@ class SecurityCenterAPI:
                 "sortDirection":"desc",
                 "scanID":"332",
                 "view":"all"
-                },
+            },
             "sourceType":"individual",
             "scanID":"332",
             "sortField":"severity",
             "sortDir":"desc",
             "columns":[],
             "type":"vuln"
-        };
+        }
 
-         query_data = {
+        query_data = {
             "type": "vuln",
             "query": {
                 "scanID": "332",   
@@ -157,7 +157,7 @@ class SecurityCenterAPI:
             "sortField": "severity",
             "sourceType": "individual", 
             "view": "all"
-        };
+        }
         data = self.connect('POST', '/rest/analysis', query_data);
         results = data.json()['response'];
         if not results: 
