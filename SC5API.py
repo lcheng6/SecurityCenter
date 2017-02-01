@@ -147,10 +147,13 @@ class SecurityCenterAPI:
         query_data = {
             
             "query": {
-                "scanID": "332",   
-                "id": "332",
+                "sourceType":"individual",
                 "startOffset":0,
                 "endOffset":10,
+                "filters":[],
+                "sortColumn":"severity",
+                "sortDirection":"desc",
+                "scanID": "332", 
                 "view": "all"
             },
             "sourceType": "individual",
