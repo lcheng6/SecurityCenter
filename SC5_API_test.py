@@ -45,25 +45,25 @@ securityCenterURL = 'https://' + securityCenterHost
 securityCenterAPI.set_url(securityCenterURL)
 securityCenterAPI.login(args.user, args.password)
 
-#asset_219 = securityCenterAPI.get_asset_by_id(219);
+asset_219 = securityCenterAPI.get_asset_by_id(219);
 
-#pp.pprint(asset_219);
+pp.pprint(asset_219);
 
 
 #Block of code to test CMDB ElasticSearch 
 #print "url: " + cmdbAPIInitData["cmdbElasticSearchURL"];
-inventoryAPI = CMDBInventory.CMDBInventoryAPI(cmdbAPIInitData)
-windowsIPs = inventoryAPI.get_windows_instance_private_IPs()
+# inventoryAPI = CMDBInventory.CMDBInventoryAPI(cmdbAPIInitData)
+# windowsIPs = inventoryAPI.get_windows_instance_private_IPs()
 
-for ip in windowsIPs:
-    print "Windows IP: " + ip
+# for ip in windowsIPs:
+#     print "Windows IP: " + ip
     
-securityCenterAPI.update_hosts_by_asset_id(219, "")
-securityCenterAPI.update_hosts_by_asset_id(219, windowsIPs)
+# securityCenterAPI.update_hosts_by_asset_id(219, "")
+# securityCenterAPI.update_hosts_by_asset_id(219, windowsIPs)
 
-linuxIPs = inventoryAPI.get_linux_instance_private_IPs()
+# linuxIPs = inventoryAPI.get_linux_instance_private_IPs()
 
-for ip in linuxIPs:
-    print "Linux IP: " + ip
+# for ip in linuxIPs:
+#     print "Linux IP: " + ip
 
-    
+#     

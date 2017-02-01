@@ -113,5 +113,23 @@ class SecurityCenterAPI:
             sys.exit("No response from patch operation");
         else:
             return results;
-        
-        
+    
+    def get_analysis_by_id(self, id): 
+        #Post the hosts with a commmand to get analysis by ID.  
+        query_data = {
+            "type": "vuln",
+            "query": {
+                "scanID": "332",   
+                "id": "332"         
+            },
+            "scanID": "332",
+            "sortDir": "desc",
+            "sortField": "severity",
+            "sourceType": "indivdual"
+        };
+        data = self.connect('POST', '/rest/analysis', data);
+        results = data.json()['response'];
+        if not results: 
+            sys.exit("No response from patch operation");
+        else:
+            return results;
