@@ -147,6 +147,11 @@ class SecurityCenterAPI:
         query_data = {
             
             "query": {
+                "createdTime":0,
+                "modifiedTime":0,
+                "groups":[],
+                "type":"vuln",
+                "tool":"sumid",
                 "sourceType":"individual",
                 "startOffset":0,
                 "endOffset":10,
