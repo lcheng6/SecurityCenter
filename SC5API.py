@@ -125,7 +125,8 @@ class SecurityCenterAPI:
             "scanID": "332",
             "sortDir": "desc",
             "sortField": "severity",
-            "sourceType": "individual"
+            "sourceType": "individual", 
+            "view": "all"
         };
         data = self.connect('POST', '/rest/analysis', query_data);
         results = data.json()['response'];
