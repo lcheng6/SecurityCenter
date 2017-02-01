@@ -120,7 +120,8 @@ class SecurityCenterAPI:
             "type": "vuln",
             "query": {
                 "scanID": "332",   
-                "id": "332"         
+                "id": "332",
+                "startOffset":0
             },
             "scanID": "332",
             "sortDir": "desc",
