@@ -116,33 +116,6 @@ class SecurityCenterAPI:
     
     def get_analysis_by_id(self, id): 
         #Post the hosts with a commmand to get analysis by ID.  
-        query_data = {
-            "query": {
-                "name":"",
-                "description":"",
-                "context":"",
-                "status":-1,
-                "createdTime":0,
-                "modifiedTime":0,
-                "groups":[],
-                "type":"vuln",
-                "tool":"sumid",
-                "sourceType":"individual",
-                "startOffset":0,
-                "endOffset":1000,
-                "filters":[],
-                "sortColumn":"severity",
-                "sortDirection":"desc",
-                "scanID":"332",
-                "view":"all"
-            },
-            "sourceType":"individual",
-            "scanID":"332",
-            "sortField":"severity",
-            "sortDir":"desc",
-            "columns":[],
-            "type":"vuln"
-        }
 
         query_data = {
             
