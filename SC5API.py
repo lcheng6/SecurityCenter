@@ -134,8 +134,7 @@ class SecurityCenterAPI:
                 "sortColumn":"severity",
                 "sortDirection":"desc",
                 "scanID":"332",
-                "view":"all",
-                "scanName":"STIG-Windows2008MS - (Jan 31, 2017)"
+                "view":"all"
                 },
             "sourceType":"individual",
             "scanID":"332",
