@@ -153,10 +153,11 @@ class SecurityCenterAPI:
                 "endOffset":10,
                 "view": "all"
             },
-            "scanID": "332",
-            "sortDir": "desc",
-            "sortField": "severity",
             "sourceType": "individual",
+            "scanID": "332",
+            "sortField": "severity",
+            "sortDir": "desc",
+            "columns":[],
             "type":"vuln"
         }
         data = self.connect('POST', '/rest/analysis', query_data);
