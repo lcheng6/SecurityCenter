@@ -117,17 +117,32 @@ class SecurityCenterAPI:
     def get_analysis_by_id(self, id): 
         #Post the hosts with a commmand to get analysis by ID.  
         query_data = {
-            "type": "vuln",
-            "query": {
-                "scanID": "332",   
-                "id": "332",
-                "startOffset":0
-            },
-            "scanID": "332",
-            "sortDir": "desc",
-            "sortField": "severity",
-            "sourceType": "individual", 
-            "view": "all"
+            "query":
+                {"name":"",
+                "description":"",
+                "context":"",
+                "status":-1,
+                "createdTime":0,
+                "modifiedTime":0,
+                "groups":[],
+                "type":"vuln",
+                "tool":"sumid",
+                "sourceType":"individual",
+                "startOffset":0,
+                "endOffset":50,
+                "filters":[],
+                "sortColumn":"severity",
+                "sortDirection":"desc",
+                "scanID":"332",
+                "view":"all",
+                "scanName":"STIG-Windows2008MS - (Jan 31, 2017)"
+                },
+            "sourceType":"individual",
+            "scanID":"332",
+            "sortField":"severity",
+            "sortDir":"desc",
+            "columns":[],
+            "type":"vuln"
         };
         data = self.connect('POST', '/rest/analysis', query_data);
         results = data.json()['response'];
