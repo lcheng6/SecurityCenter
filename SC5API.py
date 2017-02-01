@@ -145,18 +145,18 @@ class SecurityCenterAPI:
         }
 
         query_data = {
-            "type": "vuln",
+            
             "query": {
                 "scanID": "332",   
                 "id": "332",
                 "startOffset":0,
-                "endOffset":10
+                "endOffset":10,
+                "view": "all"
             },
             "scanID": "332",
             "sortDir": "desc",
             "sortField": "severity",
-            "sourceType": "individual", 
-            "view": "all"
+            "sourceType": "individual"
         }
         data = self.connect('POST', '/rest/analysis', query_data);
         results = data.json()['response'];
