@@ -122,7 +122,7 @@ class SecurityCenterAPI:
         begin_offset = 0;
         end_offset = 50;
         totalRecords = 50;
-        totalRecordsIsValid = false;
+        totalRecordsIsValid = False;
         allAnalysisRecords = [];
 
 
@@ -153,10 +153,10 @@ class SecurityCenterAPI:
             data = self.connect('POST', '/rest/analysis', query_data);
             results = data.json()['response'];
 
-            if (totalRecordsIsValid == false): 
+            if (totalRecordsIsValid == False): 
                 #update totalRecords count once and only once
                 totalRecords = results['totalRecords'];
-                totalRecordsIsValid = true; 
+                totalRecordsIsValid = True; 
 
             returnedRecordsCount = results['returnedRecords']
             print 'returnedRecordsCount: ' + str(returnedRecordsCount);
