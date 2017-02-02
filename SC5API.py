@@ -151,7 +151,10 @@ class SecurityCenterAPI:
             totalRecords = results['totalRecords'];
 
             returnedRecordsCount = results['returnedRecords']
+            print 'returnedRecordsCount: ' + returnedRecordsCount;
+
             returnedRecords = results['results'];
+            print 'first record: ' + returnedRecords[0]
             allAnalysisRecords.extend(returnedRecords);
             begin_offset += returnedRecordsCount; 
             end_offset += returnedRecordsCount;
