@@ -125,7 +125,7 @@ class SecurityCenterAPI:
         totalRecords = 50;
         totalRecordsIsValid = False;
         allAnalysisRecords = [];
-        scanIDStr = str(scanID)
+        scanIDStr = str(scanId)
 
 
         while (begin_offset < totalRecords):
