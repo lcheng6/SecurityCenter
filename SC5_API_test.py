@@ -68,4 +68,5 @@ pp.pprint(asset_219);
 
 #     
 
-securityCenterAPI.get_analysis_by_id(332)
+analysis_list_332 = securityCenterAPI.get_analysis_by_id(332)
+pp.print(analysis_list_332);
