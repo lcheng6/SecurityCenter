@@ -159,7 +159,9 @@ class SecurityCenterAPI:
             print 'first record: ' + str(returnedRecords[0])
             allAnalysisRecords.extend(returnedRecords);
             begin_offset += returnedRecordsCount; 
+            print 'begin_offset: ' + begin_offset
             end_offset += returnedRecordsCount;
+            print 'end_offset: ' + end_offset
 
             if not results: 
                 sys.exit("No response from patch operation");
