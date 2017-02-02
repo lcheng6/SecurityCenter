@@ -150,25 +150,27 @@ class SecurityCenterAPI:
                 "columns":[],
                 "type":"vuln"
             };
+
             data = self.connect('POST', '/rest/analysis', query_data);
             results = data.json()['response'];
 
             if (totalRecordsIsValid == False): 
                 #update totalRecords count once and only once
-                totalRecords = results['totalRecords'];
+                totalRecords = results['totalRecords']
+                totalRecords = int(totalRecords)
                 totalRecordsIsValid = True; 
-                print 'totalRecords: ' + totalRecords
+                #print 'totalRecords: ' + totalRecords
 
             returnedRecordsCount = results['returnedRecords']
             print 'returnedRecordsCount: ' + str(returnedRecordsCount);
 
             returnedRecords = results['results'];
-            print 'first record: ' + str(returnedRecords[0])
+            #print 'first record: ' + str(returnedRecords[0])
             allAnalysisRecords.extend(returnedRecords);
             begin_offset += returnedRecordsCount; 
-            print 'begin_offset: ' + str(begin_offset)
+            #print 'begin_offset: ' + str(begin_offset)
             end_offset += returnedRecordsCount;
-            print 'end_offset: ' + str(end_offset)
+            #print 'end_offset: ' + str(end_offset)
 
             if not results: 
                 sys.exit("No response from patch operation");
