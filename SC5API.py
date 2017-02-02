@@ -1,6 +1,8 @@
 import json
 import sys
 import requests
+import pprint
+
 requests.packages.urllib3.disable_warnings()
 
 
@@ -118,8 +120,8 @@ class SecurityCenterAPI:
         #Post the hosts with a commmand to get analysis by scanID.  
 
         begin_offset = 0;
-        end_offset = 10;
-        totalRecords = 10;
+        end_offset = 50;
+        totalRecords = 50;
         allAnalysisRecords = [];
 
         while (begin_offset < totalRecords):
@@ -151,10 +153,10 @@ class SecurityCenterAPI:
             totalRecords = results['totalRecords'];
 
             returnedRecordsCount = results['returnedRecords']
-            print 'returnedRecordsCount: ' + returnedRecordsCount;
+            print 'returnedRecordsCount: ' + str(returnedRecordsCount);
 
             returnedRecords = results['results'];
-            print 'first record: ' + returnedRecords[0]
+            print 'first record: ' + str(returnedRecords[0])
             allAnalysisRecords.extend(returnedRecords);
             begin_offset += returnedRecordsCount; 
             end_offset += returnedRecordsCount;
