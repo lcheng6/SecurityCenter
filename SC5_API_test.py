@@ -67,3 +67,5 @@ pp.pprint(asset_219);
 #     print "Linux IP: " + ip
 
 #     
+
+securityCenterAPI.get_analysis_by_id(332)
