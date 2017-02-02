@@ -118,12 +118,14 @@ class SecurityCenterAPI:
     
     def get_analysis_by_id(self, scanId): 
         #Post the hosts with a commmand to get analysis by scanID.  
+        #scanID is an integer of the scan.  
 
         begin_offset = 0;
         end_offset = 50;
         totalRecords = 50;
         totalRecordsIsValid = False;
         allAnalysisRecords = [];
+        scanIDStr = str(scanID)
 
 
         while (begin_offset < totalRecords):
@@ -140,11 +142,11 @@ class SecurityCenterAPI:
                     "filters":[],
                     "sortColumn":"severity",
                     "sortDirection":"desc",
-                    "scanID": "332", 
+                    "scanID": scanIDStr, 
                     "view": "all"
                 },
                 "sourceType": "individual",
-                "scanID": "332",
+                "scanID": scanIDStr,
                 "sortField": "severity",
                 "sortDir": "desc",
                 "columns":[],
@@ -162,7 +164,7 @@ class SecurityCenterAPI:
                 #print 'totalRecords: ' + totalRecords
 
             returnedRecordsCount = results['returnedRecords']
-            print 'returnedRecordsCount: ' + str(returnedRecordsCount);
+            #print 'returnedRecordsCount: ' + str(returnedRecordsCount);
 
             returnedRecords = results['results'];
             #print 'first record: ' + str(returnedRecords[0])
