@@ -122,7 +122,7 @@ class SecurityCenterAPI:
         totalRecords = 10;
         allAnalysisRecords = [];
 
-        while (begin_offset < size):
+        while (begin_offset < totalRecords):
             query_data = {
                 "query": {
                     "createdTime":0,
