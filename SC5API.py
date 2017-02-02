@@ -114,36 +114,53 @@ class SecurityCenterAPI:
         else:
             return results;
     
-    def get_analysis_by_id(self, id): 
-        #Post the hosts with a commmand to get analysis by ID.  
+    def get_analysis_by_id(self, scanId): 
+        #Post the hosts with a commmand to get analysis by scanID.  
 
-        query_data = {
-            
-            "query": {
-                "createdTime":0,
-                "modifiedTime":0,
-                "groups":[],
-                "type":"vuln",
-                "tool":"sumid",
-                "sourceType":"individual",
-                "startOffset":0,
-                "endOffset":10,
-                "filters":[],
-                "sortColumn":"severity",
-                "sortDirection":"desc",
-                "scanID": "332", 
-                "view": "all"
-            },
-            "sourceType": "individual",
-            "scanID": "332",
-            "sortField": "severity",
-            "sortDir": "desc",
-            "columns":[],
-            "type":"vuln"
-        }
-        data = self.connect('POST', '/rest/analysis', query_data);
-        results = data.json()['response'];
-        if not results: 
-            sys.exit("No response from patch operation");
-        else:
-            return results;
+        begin_offset = 0;
+        end_offset = 10;
+        totalRecords = 10;
+        allAnalysisRecords = [];
+
+        while (begin_offset < size):
+            query_data = {
+                "query": {
+                    "createdTime":0,
+                    "modifiedTime":0,
+                    "groups":[],
+                    "type":"vuln",
+                    "tool":"sumid",
+                    "sourceType":"individual",
+                    "startOffset":begin_offset,
+                    "endOffset":end_offset,
+                    "filters":[],
+                    "sortColumn":"severity",
+                    "sortDirection":"desc",
+                    "scanID": "332", 
+                    "view": "all"
+                },
+                "sourceType": "individual",
+                "scanID": "332",
+                "sortField": "severity",
+                "sortDir": "desc",
+                "columns":[],
+                "type":"vuln"
+            };
+            data = self.connect('POST', '/rest/analysis', query_data);
+            results = data.json()['response'];
+            totalRecords = results['totalRecords'];
+
+            returnedRecordsCount = results['returnedRecords']
+            returnedRecords = results['results'];
+            allAnalysisRecords.extend(returnedRecords);
+            begin_offset += returnedRecordsCount; 
+            end_offset += returnedRecordsCount;
+
+            if not results: 
+                sys.exit("No response from patch operation");
+        
+        return allAnalysisRecords
+
+       
+       
+        
