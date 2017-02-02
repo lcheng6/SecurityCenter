@@ -157,6 +157,7 @@ class SecurityCenterAPI:
                 #update totalRecords count once and only once
                 totalRecords = results['totalRecords'];
                 totalRecordsIsValid = True; 
+                print 'totalRecords: ' + totalRecords
 
             returnedRecordsCount = results['returnedRecords']
             print 'returnedRecordsCount: ' + str(returnedRecordsCount);
