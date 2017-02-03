@@ -74,4 +74,4 @@ pp.pprint(asset_219);
 repos = securityCenterAPI.get_respository_fields();
 transformed_repos = securityCenterAPI.transformRepositoriesForAcceptRisk(repos);
 
-pp.print(transformed_repos);
+pp.pprint(transformed_repos);

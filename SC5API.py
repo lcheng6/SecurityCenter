@@ -192,7 +192,7 @@ class SecurityCenterAPI:
         return results;
 
 
-    def acceptRiskSingleItem(pluginId, comments, expiration_date, hostType, name, respositories)
+    def acceptRiskSingleItem(self, pluginId, comments, expiration_date, hostType, name, respositories): 
         query_data = {
             "comments": comments
             "expires": -1,, #mockup
