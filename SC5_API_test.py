@@ -68,5 +68,10 @@ pp.pprint(asset_219);
 
 #     
 
-analysis_list_332 = securityCenterAPI.get_analysis_by_id(332)
-pp.pprint(analysis_list_332);
+#analysis_list_332 = securityCenterAPI.get_analysis_by_id(333)
+#pp.pprint(analysis_list_333);
+
+repos = securityCenterAPI.get_respository_fields();
+transformed_repos = securityCenterAPI.transformRepositoriesForAcceptRisk(repos);
+
+pp.print(transformed_repos);

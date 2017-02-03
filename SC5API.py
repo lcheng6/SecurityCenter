@@ -2,6 +2,7 @@ import json
 import sys
 import requests
 import pprint
+import urllib
 
 requests.packages.urllib3.disable_warnings()
 
@@ -179,6 +180,60 @@ class SecurityCenterAPI:
         
         return allAnalysisRecords
 
-       
-       
+    def get_respository_fields(self): 
+        # this function apparently pulls the repository data. 
+        # this data will subsequently be used to construct a statement for acceptRiskRule API
         
+        query_string = { 'fields' : 'name,description,type,dataFormat,modifiedTime,vulnCount,ipCount,typeFields'};
+        encoded_query_string = urllib.urlencode(query_string)
+        data = self.connect('POST', '/rest/repository'+ '?' + encoded_query_string);
+        results = data.json()['response']
+
+        return results;
+
+
+    def acceptRiskSingleItem(pluginId, comments, expiration_date, hostType, name, respositories)
+        query_data = {
+            "comments": comments
+            "expires": -1,, #mockup
+            "hostType": "all", #mockup
+            #"name": "RHEL-06-000019 - There must be no .rhosts or hosts.equiv files on the system - ~/.rhosts.", #mockup 
+            "name": name,
+            "newSeverity": {
+                "id": 3
+            },
+            "plugin": {
+                "id": "1001387"
+            },
+            "port": "0",
+            "protocol": 6,
+            "repositories": respositories
+        }
+
+        return True;
+
+    def transformRepositoriesForAcceptRisk(resposRawData):
+        transformedReposArray = [];
+        for repo in resposRawData
+            transformedRepo = {
+                "context": "",
+                "correlation": [],
+                "createdTime": null,
+                "dataFormat": "IPv4",
+                "description": repo["description"],
+                "id": repo["id"],
+                "ipRange": repo["typeFields"]["ipRange"],
+                "modifiedTime": repo["modifiedTime"],
+                "name": repo["name"],
+                "organizations": [],
+                "status": null,
+                "trendWithRaw": repo["trendWithRaw"],
+                "trendingDays": repo["trendingDays"],
+                "type": repo["type"]
+            }
+
+            transformedReposArray.append(transformedRepo);
+
+        return transformedReposArray
+
+    
