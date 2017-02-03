@@ -212,7 +212,7 @@ class SecurityCenterAPI:
 
         return True;
 
-    def transformRepositoriesForAcceptRisk(resposRawData):
+    def transformRepositoriesForAcceptRisk(self, resposRawData):
         transformedReposArray = [];
         for repo in resposRawData : 
             transformedRepo = {
