@@ -194,7 +194,7 @@ class SecurityCenterAPI:
 
     def acceptRiskSingleItem(self, pluginId, comments, expiration_date, hostType, name, respositories): 
         query_data = {
-            "comments": comments
+            "comments": comments,
             "expires": -1,, #mockup
             "hostType": "all", #mockup
             #"name": "RHEL-06-000019 - There must be no .rhosts or hosts.equiv files on the system - ~/.rhosts.", #mockup 
