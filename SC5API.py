@@ -214,7 +214,7 @@ class SecurityCenterAPI:
 
     def transformRepositoriesForAcceptRisk(resposRawData):
         transformedReposArray = [];
-        for repo in resposRawData
+        for repo in resposRawData : 
             transformedRepo = {
                 "context": "",
                 "correlation": [],
