@@ -218,7 +218,7 @@ class SecurityCenterAPI:
             transformedRepo = {
                 "context": "",
                 "correlation": [],
-                "createdTime": null,
+                "createdTime": None,
                 "dataFormat": "IPv4",
                 "description": repo["description"],
                 "id": repo["id"],
@@ -226,7 +226,7 @@ class SecurityCenterAPI:
                 "modifiedTime": repo["modifiedTime"],
                 "name": repo["name"],
                 "organizations": [],
-                "status": null,
+                "status": None,
                 "trendWithRaw": repo["trendWithRaw"],
                 "trendingDays": repo["trendingDays"],
                 "type": repo["type"]
