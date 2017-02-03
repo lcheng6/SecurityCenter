@@ -186,7 +186,7 @@ class SecurityCenterAPI:
         
         query_string = { 'fields' : 'name,description,type,dataFormat,modifiedTime,vulnCount,ipCount,typeFields'};
         encoded_query_string = urllib.urlencode(query_string)
-        data = self.connect('POST', '/rest/repository'+ '?' + encoded_query_string);
+        data = self.connect('GET', '/rest/repository'+ '?' + encoded_query_string);
         results = data.json()['response']
 
         return results;
