@@ -227,8 +227,8 @@ class SecurityCenterAPI:
                 "name": repo["name"],
                 "organizations": [],
                 "status": None,
-                "trendWithRaw": repo["trendWithRaw"],
-                "trendingDays": repo["trendingDays"],
+                "trendWithRaw": repo["typeFields"]["trendWithRaw"],
+                "trendingDays": repo["typeFields"]["trendingDays"],
                 "type": repo["type"]
             }
 
