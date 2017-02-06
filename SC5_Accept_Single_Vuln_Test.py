@@ -19,7 +19,7 @@ def transform_csv_entry_to_api_data (single_csv_vuln, repos, date):
 			"id": 3
 		},
 		"plugin": {
-			"id": str(single_csv_vuln.Plugin)
+			"id": str(single_csv_vuln["Plugin"])
 		},
 		"port": "0",
 		"protocol": 6,
@@ -28,7 +28,7 @@ def transform_csv_entry_to_api_data (single_csv_vuln, repos, date):
 
 	return query_data;
 
-	
+
 argParser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
 pp = pprint.PrettyPrinter(indent=4);
 configParser = ConfigParser.RawConfigParser()
