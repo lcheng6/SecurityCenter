@@ -55,7 +55,10 @@ securityCenterAPI.login(args.user, args.password)
 #pp.pprint(analysis_list_333);
 
 #this code block runs the accpet risk tests 
-#repos = securityCenterAPI.get_respository_fields();
-#transformed_repos = securityCenterAPI.transformRepositoriesForAcceptRisk(repos);
-#pp.pprint(transformed_repos);
+repos = securityCenterAPI.get_respository_fields();
+transformed_repos = securityCenterAPI.transformRepositoriesForAcceptRisk(repos);
+print "Transfored Repositories:" 
+pp.pprint(transformed_repos);
 
+
+securityCenterAPI
