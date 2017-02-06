@@ -28,7 +28,7 @@ class VulnAcceptanceList:
 		self.filename = filename;
 		self.f = open(filename, 'r');
 
-		reader = csv.reader(f);
+		reader = csv.reader(self.f);
 		headers = reader.next();
 		#I have no plans to use headers
 
