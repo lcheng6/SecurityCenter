@@ -8,6 +8,7 @@ import ConfigParser
 import urllib2
 import CMDBInventory
 import VulnAcceptanceList
+import time
 
 #this function transform a CSV vulnerability entry into a format for 
 #accept risk api data query; and add the repository information
@@ -36,6 +37,9 @@ pp = pprint.PrettyPrinter(indent=4);
 configParser = ConfigParser.RawConfigParser()
 elasticSearchWindowsSearch = "";
 elasticSearchNonWindowsSearch = "";
+
+vuln_acceptance_deadline = '06.01.2017'
+vuln_acceptance_pattern = '%m.%d%Y'
 
 #parser.add_argument('--schost', dest = 'hostname', type=str, required=True, help='hostname or IP Address of the Nessus Security Center')
 argParser.add_argument('-u', dest = 'user', type=str, required=True, help='Nessus Security Center username')
@@ -83,9 +87,16 @@ print "Transfored Repositories:"
 pp.pprint(transformed_repos);
 
 
+vuln_acceptance_epoch = int(time.mktime(time.strptime(
+			vuln_acceptance_deadline, 
+			vuln_acceptance_pattern
+			)))
+
 vulnList = VulnAcceptanceList.VulnAcceptanceList()
+
 print "Sample Vulnerability from CSV: "
 vulnList.read_csv_file(cmdbAPIInitData["acceptance_list_file"])
+
 for index in [0, 1, 2]: 
 	single_csv_vuln = vulnList.get_row_by_index(index)
 	pp.pprint(single_csv_vuln);
@@ -103,7 +114,7 @@ for index in [0, 1, 2]:
 	result = securityCenterAPI.acceptRiskSingleItem(
 			pluginId = single_csv_vuln['Plugin'], #pluginId
 			comments = single_csv_vuln['Comments'],
-			expiration_date = -1,
+			expiration_date = vuln_acceptance_epoch,
 			hostType = 'all',
 			name = single_csv_vuln['PluginName'],
 			repositories = transformed_repos
