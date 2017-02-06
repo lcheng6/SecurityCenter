@@ -192,7 +192,7 @@ class SecurityCenterAPI:
         return results;
 
 
-    def acceptRiskSingleItem(self, pluginId, comments, expiration_date, hostType, name, respositories): 
+    def acceptRiskSingleItem(self, pluginId, comments, expiration_date, hostType, name, repositories): 
         query_data = {
             "comments": comments,
             "expires": -1, #mockup, the real value is the epoch time of the date.  
@@ -207,7 +207,7 @@ class SecurityCenterAPI:
             },
             "port": "0",
             "protocol": 6,
-            "repositories": respositories
+            "repositories": repositories
         }
 
         data = self.connect('POST', '/rest/acceptRiskRule', query_data)
