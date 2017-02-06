@@ -210,7 +210,11 @@ class SecurityCenterAPI:
             "repositories": respositories
         }
 
-        return True;
+        data = self.connect('POST', '/rest/acceptRiskRule', query_data)
+
+        result = data.json()['response']
+
+        return result;
 
     def postAcceptRiskSingleItem(self, query_data): 
         data = self.connect('POST', '/rest/acceptRiskRule', query_data);
