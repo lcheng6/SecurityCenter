@@ -16,7 +16,7 @@ class VulnAcceptanceList:
 	headers = []; 
 
 	def __init__(self):
-		self.vulnList  = {}
+		self.vulnList  = [];
 		self.filename = "";
 		self.f = None;
 		self.headers = ["Plugin", "PluginName", "Severity", "Total", "Comments", "AcceptRisk"];
