@@ -103,7 +103,7 @@ result = securityCenterAPI.acceptRiskSingleItem(
 		comments = single_csv_vuln['Comments'],
 		expiration_date = -1,
 		hostType = 'all',
-		name = single_csv_vuln['PluginName']
+		name = single_csv_vuln['PluginName'],
 		repositories = transformed_repos
 	);
 
