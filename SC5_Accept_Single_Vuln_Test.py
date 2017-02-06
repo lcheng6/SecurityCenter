@@ -9,6 +9,26 @@ import urllib2
 import CMDBInventory
 import VulnAcceptanceList
 
+def transform_csv_entry_to_api_data (single_csv_vuln, repos, date):
+	query_data = {
+		"comments": single_csv_vuln["Comments"],
+		"expires": date,
+		"hostType": "all",
+		"name": single_csv_vuln["PluginName"],
+		"newSeverity": {
+			"id": 3
+		},
+		"plugin": {
+			"id": str(single_csv_vuln.Plugin)
+		},
+		"port": "0",
+		"protocol": 6,
+		"repositories" : repos
+	}
+
+	return query_data;
+
+	
 argParser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
 pp = pprint.PrettyPrinter(indent=4);
 configParser = ConfigParser.RawConfigParser()
@@ -62,7 +82,7 @@ pp.pprint(transformed_repos);
 
 
 vulnList = VulnAcceptanceList.VulnAcceptanceList()
-print "Read Vulnerability: "
+print "Sample Vulnerability from CSV: "
 vulnList.read_csv_file(cmdbAPIInitData["acceptance_list_file"])
 single_csv_vuln = vulnList.get_row_by_index(0)
 pp.pprint(single_csv_vuln);
@@ -73,21 +93,3 @@ pp.pprint(accept_data);
 
 #this function transform a CSV vulnerability entry into a format for 
 #accept risk api data query; and add the repository information
-def transform_csv_entry_to_api_data (single_csv_vuln, repos, date):
-	query_data = {
-		"comments": single_csv_vuln["Comments"],
-		"expires": date,
-		"hostType": "all",
-		"name": single_csv_vuln["PluginName"],
-		"newSeverity": {
-			"id": 3
-		},
-		"plugin": {
-			"id": str(single_csv_vuln.Plugin)
-		},
-		"port": "0",
-		"protocol": 6,
-		"repositories" : repos
-	}
-
-	return query_data;
