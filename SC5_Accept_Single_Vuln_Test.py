@@ -38,7 +38,7 @@ if args.config :
     cmdbAPIInitData["elasticSearchNonWindowsSearch"] =configParser.get('CMDBElasticSearch','non_windows_search_string')
     cmdbAPIInitData["elasticSearchSize"]=configParser.get('CMDBElasticSearch','search_size')
     cmdbAPIInitData["appliance_exclusion_file"]=configParser.get('CMDBElasticSearch', 'appliance_exclusion_file');
-    cmdbAPIInitData["acceptance_list_file"] = configParser.get('')   
+    cmdbAPIInitData["acceptance_list_file"] = configParser.get('NessusSecurityCenterVulnAcceptance', 'vuln_acceptance_list')   
 
 
 #Block of code to test Security Center API Access
@@ -65,4 +65,4 @@ securityCenterAPI
 
 vulnList = VulnAcceptanceList.VulnAcceptanceList()
 
-vulnList.read_csv_file("")
+vulnList.read_csv_file(cmdbAPIInitData["acceptance_list_file"])
