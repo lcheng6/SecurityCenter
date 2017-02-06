@@ -39,7 +39,7 @@ elasticSearchWindowsSearch = "";
 elasticSearchNonWindowsSearch = "";
 
 vuln_acceptance_deadline = '06.01.2017'
-vuln_acceptance_pattern = '%m.%d%Y'
+vuln_acceptance_pattern = '%m.%d.%Y'
 
 #parser.add_argument('--schost', dest = 'hostname', type=str, required=True, help='hostname or IP Address of the Nessus Security Center')
 argParser.add_argument('-u', dest = 'user', type=str, required=True, help='Nessus Security Center username')
