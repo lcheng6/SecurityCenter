@@ -195,7 +195,7 @@ class SecurityCenterAPI:
     def acceptRiskSingleItem(self, pluginId, comments, expiration_date, hostType, name, respositories): 
         query_data = {
             "comments": comments,
-            "expires": -1, #mockup
+            "expires": -1, #mockup, the real value is the epoch time of the date.  
             "hostType": "all", #mockup
             #"name": "RHEL-06-000019 - There must be no .rhosts or hosts.equiv files on the system - ~/.rhosts.", #mockup 
             "name": name,
@@ -210,6 +210,8 @@ class SecurityCenterAPI:
             "repositories": respositories
         }
 
+
+
         return True;
 
     def transformRepositoriesForAcceptRisk(self, resposRawData):
@@ -218,7 +220,7 @@ class SecurityCenterAPI:
             transformedRepo = {
                 "context": "",
                 "correlation": [],
-                "createdTime": None,
+                "createdTime": None, #-1 is for forever, transform to EpochTime for date/month/year
                 "dataFormat": "IPv4",
                 "description": repo["description"],
                 "id": repo["id"],
@@ -237,3 +239,5 @@ class SecurityCenterAPI:
         return transformedReposArray
 
     
+    #todo: take one line single item of vulnerabilty, get the respositories, fill it in the vuln request, 
+    # get the date, put in the date.  
