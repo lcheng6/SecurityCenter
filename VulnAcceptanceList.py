@@ -42,5 +42,5 @@ class VulnAcceptanceList:
 	def get_row_count(self):
 		return len(self.vulnList);
 
-	def get_row_by_index(self, index) 
+	def get_row_by_index(self, index):
 		return self.vulnList[index];

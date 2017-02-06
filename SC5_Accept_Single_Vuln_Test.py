@@ -66,4 +66,4 @@ securityCenterAPI
 vulnList = VulnAcceptanceList.VulnAcceptanceList()
 
 vulnList.read_csv_file(cmdbAPIInitData["acceptance_list_file"])
-ppprint vulnList.get_row_by_index(0);
+pp.pprint(vulnList.get_row_by_index(0));
