@@ -9,6 +9,8 @@ import urllib2
 import CMDBInventory
 import VulnAcceptanceList
 
+#this function transform a CSV vulnerability entry into a format for 
+#accept risk api data query; and add the repository information
 def transform_csv_entry_to_api_data (single_csv_vuln, repos, date):
 	query_data = {
 		"comments": single_csv_vuln["Comments"],
@@ -91,5 +93,5 @@ print "Sample Accept Vulnerability API Data: "
 accept_data = transform_csv_entry_to_api_data(single_csv_vuln, transformed_repos, -1);
 pp.pprint(accept_data);
 
-#this function transform a CSV vulnerability entry into a format for 
-#accept risk api data query; and add the repository information
+
+
