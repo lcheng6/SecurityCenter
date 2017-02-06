@@ -65,7 +65,7 @@ vulnList = VulnAcceptanceList.VulnAcceptanceList()
 print "Read Vulnerability: "
 vulnList.read_csv_file(cmdbAPIInitData["acceptance_list_file"])
 single_csv_vuln = vulnList.get_row_by_index(0)
-pp.pprint(single_vuln);
+pp.pprint(single_csv_vuln);
 
 print "Sample Accept Vulnerability API Data: "
 accept_data = transform_csv_entry_to_api_data(single_csv_vuln, transformed_repos, -1);
