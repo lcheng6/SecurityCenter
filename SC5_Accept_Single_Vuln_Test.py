@@ -104,7 +104,7 @@ result = securityCenterAPI.acceptRiskSingleItem(
 		expiration_date = -1,
 		hostType = 'all',
 		name = single_csv_vuln['PluginName'],
-		respositories = transformed_repos
+		repositories = transformed_repos
 	);
 
 pp.pprint(result);
