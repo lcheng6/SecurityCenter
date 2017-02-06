@@ -35,6 +35,7 @@ class VulnAcceptanceList:
 		#headers = ["Plugin", "PluginName", "Severity", "Total", "Comments", "AcceptRisk"];
 
 		for row in reader:
+			mappedRow = {};
 			for (k, v) in zip (self.headers, row): 
 				mappedRow[k] = v;
 			self.vulnList.append(mappedRow);
