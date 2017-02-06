@@ -97,7 +97,7 @@ vulnList = VulnAcceptanceList.VulnAcceptanceList()
 print "Sample Vulnerability from CSV: "
 vulnList.read_csv_file(cmdbAPIInitData["acceptance_list_file"])
 
-for index in [0, 1, 2]: 
+for index in [0, 1]: 
 	single_csv_vuln = vulnList.get_row_by_index(index)
 	pp.pprint(single_csv_vuln);
 
