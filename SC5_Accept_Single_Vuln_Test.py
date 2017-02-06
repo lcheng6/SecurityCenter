@@ -107,4 +107,4 @@ result = securityCenterAPI.acceptRiskSingleItem(
 		repositories = transformed_repos
 	);
 
-pp.print(result);
+pp.pprint(result);
