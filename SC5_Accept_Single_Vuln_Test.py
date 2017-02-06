@@ -7,7 +7,7 @@ import requests
 import ConfigParser
 import urllib2
 import CMDBInventory
-import csv
+import VulnAcceptanceList
 
 argParser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
 pp = pprint.PrettyPrinter(indent=4);
@@ -38,7 +38,7 @@ if args.config :
     cmdbAPIInitData["elasticSearchNonWindowsSearch"] =configParser.get('CMDBElasticSearch','non_windows_search_string')
     cmdbAPIInitData["elasticSearchSize"]=configParser.get('CMDBElasticSearch','search_size')
     cmdbAPIInitData["appliance_exclusion_file"]=configParser.get('CMDBElasticSearch', 'appliance_exclusion_file');
-    
+    cmdbAPIInitData["acceptance_list_file"] = configParser.get('')   
 
 
 #Block of code to test Security Center API Access
@@ -62,3 +62,7 @@ pp.pprint(transformed_repos);
 
 
 securityCenterAPI
+
+vulnList = VulnAcceptanceList.VulnAcceptanceList()
+
+vulnList.read_csv_file("")

@@ -19,7 +19,7 @@ class VulnAcceptanceList:
 		self.vulnList  = {}
 		self.filename = "";
 		self.f = None;
-		self. headers = ["Plugin", "PluginName", "Severity", "Total", "Comments", "AcceptRisk"];
+		self.headers = ["Plugin", "PluginName", "Severity", "Total", "Comments", "AcceptRisk"];
 
 	def set_headers(self, headers):
 		self.headers = headers
