@@ -109,15 +109,19 @@ for index in [0, 1]:
 	#result = securityCenterAPI.postAcceptRiskSingleItem(accept_vuln_post_data);
 	#pp.pprint(result);
 
-	print "Accept Vulnerability API for PlugIn ID: " + str(single_csv_vuln['Plugin']);
+	if (single_csv_vuln["AcceptRisk"].lower() == "yes"):
+		print "Accept Vulnerability API for PlugIn ID: " + str(single_csv_vuln['Plugin']);
 
-	result = securityCenterAPI.acceptRiskSingleItem(
-			pluginId = single_csv_vuln['Plugin'], #pluginId
-			comments = single_csv_vuln['Comments'],
-			expiration_date = vuln_acceptance_epoch,
-			hostType = 'all',
-			name = single_csv_vuln['PluginName'],
-			repositories = transformed_repos
-		);
+		result = securityCenterAPI.acceptRiskSingleItem(
+				pluginId = single_csv_vuln['Plugin'], #pluginId
+				comments = single_csv_vuln['Comments'],
+				expiration_date = vuln_acceptance_epoch,
+				hostType = 'all',
+				name = single_csv_vuln['PluginName'],
+				repositories = transformed_repos
+			);
+
+	else:
+		print "Do not accept Vulnerability with PlugIn ID: " + str(single_csv_vuln['Plugin'])
 
 	#pp.pprint(result);
