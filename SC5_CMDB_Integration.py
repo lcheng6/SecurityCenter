@@ -73,7 +73,7 @@ if args.config :
 
 
 	#Block of code to access Security Center API
-	if (args.password is None):
+	if args.password is None :
 		nessus_password = getpass(arg.user + " password: ")
 
 securityCenterAPI = signin_to_security_center(securityCenterURL, arg.user, nessus_password);
