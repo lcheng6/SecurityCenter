@@ -8,6 +8,7 @@ import ConfigParser
 import urllib2
 import CMDBInventory
 import csv
+import getpass
 
 def get_host_ips_from_cmdb_inventory(cmdbAPIInitData): 
 	inventoryAPI = CMDBInventory.CMDBInventoryAPI(cmdbAPIInitData)
@@ -47,10 +48,13 @@ elasticSearchWindowsSearch = "";
 elasticSearchNonWindowsSearch = "";
 
 argParser.add_argument('-u', dest = 'user', type=str, required=True, help='Nessus Security Center username')
+argParser.add_argument('-p', dest = 'password', type=str, required=False, help='Nessus Security Center password')
 argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Configuration File')
 
 args = argParser.parse_args()
 
+
+#this block of code gets all the program parameters 
 cmdbAPIInitData = {}
 
 if args.config :
@@ -68,9 +72,9 @@ if args.config :
     
 
 
-#Block of code to access Security Center API
-
-nessus_password = getpass(arg.user + " password: ")
+	#Block of code to access Security Center API
+	if (args.password is None):
+		nessus_password = getpass(arg.user + " password: ")
 
 securityCenterAPI = signin_to_security_center(securityCenterURL, arg.user, nessus_password);
 (windowsIPs, linuxIPs) = get_host_ips_from_cmdb_inventory(cmdbAPIInitData)
