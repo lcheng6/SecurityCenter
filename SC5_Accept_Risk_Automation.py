@@ -31,6 +31,7 @@ args = argParser.parse_args()
 securityCenterAPI = SC5API.SecurityCenterAPI()
 cmdbAPIInitData = {}
 
+
 if args.config :
     configFilePath = r'{0}'.format(args.config)
     configParser.read(configFilePath)
