@@ -76,7 +76,7 @@ if args.config :
     else : 
         nessus_password = args.password
 
-securityCenterAPI = signin_to_security_center(securityCenterHost, arg.user, nessus_password);
+securityCenterAPI = signin_to_security_center(securityCenterHost, args.user, nessus_password);
 (windowsIPs, linuxIPs) = get_host_ips_from_cmdb_inventory(cmdbAPIInitData)
 
 
