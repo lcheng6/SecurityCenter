@@ -24,7 +24,7 @@ def signin_to_security_center(securityCenterHost, username, password):
 	securityCenterAPI.set_url(securityCenterURL)
 	securityCenterAPI.login(username, password)
 
-	return SecurityCenterAPI;
+	return securityCenterAPI;
 
 
 #Save a copy of the asset specified the asset_id
