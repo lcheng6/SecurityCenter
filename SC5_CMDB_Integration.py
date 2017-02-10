@@ -69,12 +69,12 @@ if args.config :
     cmdbAPIInitData["elasticSearchNonWindowsSearch"] =configParser.get('CMDBElasticSearch','non_windows_search_string')
     cmdbAPIInitData["elasticSearchSize"]=configParser.get('CMDBElasticSearch','search_size')
     cmdbAPIInitData["appliance_exclusion_file"]=configParser.get('CMDBElasticSearch', 'appliance_exclusion_file');
-    
-
-
+   
 	#Block of code to access Security Center API
-	if args.password is None :
-		nessus_password = getpass(arg.user + " password: ")
+    if args.password is None :
+        nessus_password = getpass(arg.user + " password: ")
+    else : 
+        nessus_password = args.password
 
 securityCenterAPI = signin_to_security_center(securityCenterURL, arg.user, nessus_password);
 (windowsIPs, linuxIPs) = get_host_ips_from_cmdb_inventory(cmdbAPIInitData)
