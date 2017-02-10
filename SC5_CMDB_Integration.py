@@ -9,15 +9,33 @@ import urllib2
 import CMDBInventory
 import csv
 
+def get_host_ips_from_cmdb_inventory(cmdbAPIInitData): 
+	inventoryAPI = CMDBInventory.CMDBInventoryAPI(cmdbAPIInitData)
+	windowsIPs = inventoryAPI.get_windows_instance_private_IPs()
+	linuxIPs = inventoryAPI.get_linux_instance_private_IPs()\
 
-def back_up_asset_by_id(securityCenterAPI, asset_id): 
+	return (windowsIPs, linuxIPs)
+
+#create a SecurityCenterAPI object after signing into security center API
+def signin_to_security_center(securityCenterHost, username, password):
+	securityCenterURL = 'https://' + securityCenterHost
+	securityCenterAPI = SC5API.SecurityCenterAPI()
+	securityCenterAPI.set_url(securityCenterURL)
+	securityCenterAPI.login(username, password)
+
+	return SecurityCenterAPI;
+
+
+#Save a copy of the asset specified the asset_id
+def save_asset_by_id(securityCenterAPI, asset_id): 
 
 	original_asset = securityCenterAPI.get_asset_by_id(asset_id);
 	return original_asset;
 
-def update_asset_by_id(securityCenterAPI, asset_id): 
+#update the asset with host IPs 
+def update_asset_by_id(securityCenterAPI, asset_id, host_ips): 
 
-	nessus
+	
 	return True;
 
 
@@ -31,10 +49,8 @@ elasticSearchNonWindowsSearch = "";
 argParser.add_argument('-u', dest = 'user', type=str, required=True, help='Nessus Security Center username')
 argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Configuration File')
 
-
 args = argParser.parse_args()
 
-securityCenterAPI = SC5API.SecurityCenterAPI()
 cmdbAPIInitData = {}
 
 if args.config :
@@ -52,13 +68,11 @@ if args.config :
     
 
 
-#Block of code to test Security Center API Access
-securityCenterURL = 'https://' + securityCenterHost
-securityCenterAPI.set_url(securityCenterURL)
-securityCenterAPI.login(args.user, args.password)
+#Block of code to access Security Center API
 
-asset_219 = securityCenterAPI.get_asset_by_id(219);
+nessus_password = getpass(arg.user + " password: ")
 
-pp.pprint(asset_219);
+securityCenterAPI = signin_to_security_center(securityCenterURL, arg.user, nessus_password);
+(windowsIPs, linuxIPs) = get_host_ips_from_cmdb_inventory(cmdbAPIInitData)
 
 

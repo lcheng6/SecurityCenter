@@ -63,6 +63,7 @@ class SecurityCenterAPI:
 
         # We use the connect function and pass it a POST method, /rest/token resource,
         # and our login credentials as data.  We also pass our headers from above for this function.
+        # if the credentials fails to get token sys.exit will be called.  
         data = self.connect('POST', '/rest/token', data=login, headers=headers)
 
         # We can pull the cookie out of our data object and store it as a variable.
