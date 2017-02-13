@@ -71,7 +71,7 @@ argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Co
 args = argParser.parse_args()
 
 #set up basic logging
-logging.basicConfig(filename='NessusCMDBAutomation.log', level=logging.DEBUG)
+logging.basicConfig(filename='./NessusCMDBAutomation.log', level=logging.DEBUG)
 
 #this block of code gets all the program parameters 
 cmdbAPIInitData = {}
@@ -155,5 +155,5 @@ if(update_asset == True):
         linux_asset['name'] + ', [' + str(linuxIPs) + '], Nessus Response: ' + str(update_result))
 else:
     # TODO: log user did not choose to update
-    logging.info(args.user + ' did not accepted windows update');
+    logging.info(args.user + ' did not accepted linux update');
 
