@@ -147,7 +147,7 @@ if(update_asset == True):
         windows_asset['name'] + 'Nessus Security Center Response: ' + str(update_result))
 else:
     #log user did not choose to update
-    logging.info(args.user + ' did not accepted windows update');
+    logging.info(args.user + ' did not accept windows update');
 
 update_asset = prompt_user_to_update_asset(securityCenterInitData["linuxAssetId"], linux_asset['name'], linuxIPs)
 if(update_asset == True):
@@ -163,5 +163,5 @@ if(update_asset == True):
         linux_asset['name'] + ' Nessus Security Center Response: ' + str(update_result))
 else:
     #log user did not choose to update
-    logging.info(args.user + ' did not accepted linux update');
+    logging.info(args.user + ' did not accept linux update');
 
