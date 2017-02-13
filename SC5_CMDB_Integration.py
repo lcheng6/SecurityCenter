@@ -56,6 +56,8 @@ def update_asset_by_id(securityCenterAPI, asset_id, host_ips):
 
 
 #BEGIN MAIN
+
+#read the input parameters
 argParser = argparse.ArgumentParser(description='Enter your Nessus Security Center username and configuration')
 pp = pprint.PrettyPrinter(indent=4);
 configParser = ConfigParser.RawConfigParser()
@@ -68,6 +70,8 @@ argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Co
 
 args = argParser.parse_args()
 
+#set up basic logging
+logging.basicConfig(filename='NessusCMDBAutomation.log', level=logging.DEBUG)
 
 #this block of code gets all the program parameters 
 cmdbAPIInitData = {}
