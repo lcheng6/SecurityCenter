@@ -113,8 +113,10 @@ logging.info(args.user + ',' + 'successfully logged to Nessus Scanner ' + securi
 
 #save a back up of assets from the security center
 
+#Get the linux asset from Security Center API
 #TODO: log the content of linux asset
 linux_asset = securityCenterAPI.get_asset_by_id(securityCenterInitData["linuxAssetId"])
+#Get the linux asset from Security Center API
 #TODO: log the content of windows asset
 windows_asset = securityCenterAPI.get_asset_by_id(securityCenterInitData["windowsAssetId"])
 
