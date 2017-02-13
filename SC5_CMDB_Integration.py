@@ -71,8 +71,9 @@ argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Co
 args = argParser.parse_args()
 
 #set up basic logging, and logging formatter to add timestamp
-logging.basicConfig(filename='./NessusCMDBAutomation.log', level=logging.DEBUG)
-logging.format('%(astime)s - %(Levelname)s - %(message)s')
+logging.basicConfig(filename='./NessusCMDBAutomation.log', 
+    format='%(astime)s - %(Levelname)s - %(message)s', 
+    level=logging.DEBUG)
 
 #this block of code gets all the program parameters 
 cmdbAPIInitData = {}
