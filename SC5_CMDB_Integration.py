@@ -20,7 +20,7 @@ def prompt_user_to_update_asset(asset_id, asset_string, asset_hosts_ips):
     print "with " + '. '.joint(asset_host_ips);
     print "Y/N?"
     user_input = raw_input();
-    if (user_input == 'Y' || user_input == "y"):
+    if (user_input == 'Y' or user_input == "y"):
         return True;
     else: 
         return False;
