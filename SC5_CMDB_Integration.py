@@ -18,8 +18,7 @@ import logging
 def prompt_user_to_update_asset(asset_id, asset_string, asset_hosts_ips):
     print "Update " + asset_string + " with ID of " + str(asset_id)
     print "with " + '. '.join(asset_hosts_ips);
-    print "Y/N?"
-    user_input = raw_input();
+    user_input = raw_input("Y/N? ");
     if (user_input == 'Y' or user_input == "y"):
         return True;
     else: 
