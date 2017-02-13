@@ -136,6 +136,7 @@ if(update_asset == True):
     #TODO: log Nessus Security Center response
 else:
     # TODO: log user did not choose to update
+    pass
 
 update_asset = prompt_user_to_update_asset(securityCenterInitData["linuxAssetId"], linux_asset['name'], linuxIPs)
 if(update_asset == True):
@@ -145,5 +146,5 @@ if(update_asset == True):
     update_result= SecurityCenterAPI.update_hosts_by_asset_id(securityCenterInitData["linuxAssetId"], linuxIPs)
 else:
     # TODO: log user did not choose to update
-
+    pass
 
