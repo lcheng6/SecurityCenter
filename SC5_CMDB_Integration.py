@@ -9,6 +9,22 @@ import urllib2
 import CMDBInventory
 import csv
 import getpass
+import logging
+
+
+# prompt user to update an asset: 
+#   print out the new asset host ips
+#   ask the user whether to update the asset
+def prompt_user_to_update_asset(asset_id, asset_string, asset_hosts_ips):
+    print "Update " + asset_string + " with ID of " + str(asset_id)
+    print "with " + '. '.joint(asset_host_ips);
+    print "Y/N?"
+    user_input = raw_input();
+    if (user_input == 'Y' || user_input == "y"):
+        return True;
+    else: 
+        return False;
+
 
 def get_host_ips_from_cmdb_inventory(cmdbAPIInitData): 
 	inventoryAPI = CMDBInventory.CMDBInventoryAPI(cmdbAPIInitData)
@@ -65,6 +81,8 @@ if args.config :
     
     #read the Nessus Security Center parameter section
     securityCenterInitData["host"] = configParser.get('NessusSecurityCenterConfig','host')
+    securityCenterInitData["linuxAssetId"] = configParser.get('NessusSecurityCenterConfig','linux_asset_id')
+    securityCenterInitData["windowsAssetId"] = configParser.get('NessusSecurityCenterConfig','windows_asset_id')
     
     #read the CMDB Elastic Search parameter section
     cmdbAPIInitData["cmdbElasticSearchURL"] =configParser.get('CMDBElasticSearch','url')
@@ -84,11 +102,48 @@ if args.config :
     else : 
         nessus_password = args.password
 
-#TODO: log attempted signin with username
-securityCenterAPI = signin_to_security_center(securityCenterInitData["host"], args.user, nessus_password);
-#TODO: log successful signin with username
-#TODO: log successful read from an CMDB
+#log attempted signin with username
+logging.info(args.user + ',' + 'attempt logging to Nessus Scanner ' + securityCenterInitData["host"])
+
+#Log into Nessus Security Center
+securityCenterAPI = signin_to_security_center(securityCenterInitData["host"], args.user, nessus_password)
+
+#log successful signin with username
+logging.info(args.user + ',' + 'successfully logged to Nessus Scanner ' + securityCenterInitData["host"])
+
+#save a back up of assets from the security center
+
+#TODO: log the content of linux asset
+linux_asset = securityCenterAPI.get_asset_by_id(securityCenterInitData["linuxAssetId"])
+#TODO: log the content of windows asset
+windows_asset = securityCenterAPI.get_asset_by_id(securityCenterInitData["windowsAssetId"])
+
+#log successful read from an CMDB
+logging.info('attempt to read windows and linux hosts from CMDB')
 (windowsIPs, linuxIPs) = get_host_ips_from_cmdb_inventory(cmdbAPIInitData)
+logging.info('read windows IPs from CMDB: [' + ','.join(windowsIPs) + ']')
+logging.info('read linux IPs from CMDB: [' + ','.join(windowsIPs) + ']' )
 
 #Prompt users to accept new changes 
+
+update_asset = prompt_user_to_update_asset(securityCenterInitData["windowsAssetId"], windows_asset['name'], windowsIPs)
+if(update_asset == True):
+    # TODO: log user entered yes for update
+    # TODO: log Nessus Security Center response
+    logging.info(args.user + ' has accepted windows update');
+    update_result= SecurityCenterAPI.update_hosts_by_asset_id(securityCenterInitData["windowsAssetId"], windowsIPs)
+    #logging.info()
+    #TODO: log Nessus Security Center response
+else:
+    # TODO: log user did not choose to update
+
+update_asset = prompt_user_to_update_asset(securityCenterInitData["linuxAssetId"], linux_asset['name'], linuxIPs)
+if(update_asset == True):
+    # TODO: log user entered yes for update
+    # TODO: log Nessus Security Center response
+    logging.info(args.user + ' has accepted windows update');
+    update_result= SecurityCenterAPI.update_hosts_by_asset_id(securityCenterInitData["linuxAssetId"], linuxIPs)
+else:
+    # TODO: log user did not choose to update
+
 
