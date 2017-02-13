@@ -133,27 +133,33 @@ logging.info('read linux IPs from CMDB: [' + ','.join(windowsIPs) + ']' )
 
 update_asset = prompt_user_to_update_asset(securityCenterInitData["windowsAssetId"], windows_asset['name'], windowsIPs)
 if(update_asset == True):
-    # TODO: log user entered yes for update
-    # TODO: log Nessus Security Center response
-    logging.info(args.user + ' has accepted windows update');
+    #logging acceptance of windows update 
+    logging.info(args.user + ' has accepted windows update')
+    #logging the windows asset update attempt
+    logging.info(args.user + ', ' + str(securityCenterInitData["windowsAssetId"]) + ', ' + 
+        windows_asset['name'] + ', update with static IPs [' + str(windowsIPs) + ']');
     update_result= SecurityCenterAPI.update_hosts_by_asset_id(securityCenterInitData["windowsAssetId"], windowsIPs)
     
+    #logging the Nessus SSC response to windows asset update
     logging.info(args.user + ', ' + str(securityCenterInitData["windowsAssetId"]) + ', ' + 
-        windows_asset['name'] + ', [' + str(windowsIPs) + '], Nessus Response: ' + str(update_result))
+        windows_asset['name'] + 'Nessus Security Center Response: ' + str(update_result))
 else:
-    # TODO: log user did not choose to update
+    #log user did not choose to update
     logging.info(args.user + ' did not accepted windows update');
 
 update_asset = prompt_user_to_update_asset(securityCenterInitData["linuxAssetId"], linux_asset['name'], linuxIPs)
 if(update_asset == True):
-    # TODO: log user entered yes for update
-    # TODO: log Nessus Security Center response
+    #logging acceptance of linux asset update 
     logging.info(args.user + ' has accepted windows update');
+    #logging the linux asset update attempt
+    logging.info(args.user + ', ' + str(securityCenterInitData["linuxAssetId"]) + ', ' + 
+        linux_asset['name'] + ', [' + str(linuxIPs) + ']');
     update_result= SecurityCenterAPI.update_hosts_by_asset_id(securityCenterInitData["linuxAssetId"], linuxIPs)
 
+    #logging the Nessus SSC response to linux asset update
     logging.info(args.user + ', ' + str(securityCenterInitData["linuxAssetId"]) + ', ' + 
-        linux_asset['name'] + ', [' + str(linuxIPs) + '], Nessus Response: ' + str(update_result))
+        linux_asset['name'] + ' Nessus Security Center Response: ' + str(update_result))
 else:
-    # TODO: log user did not choose to update
+    #log user did not choose to update
     logging.info(args.user + ' did not accepted linux update');
 
