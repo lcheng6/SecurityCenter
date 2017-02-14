@@ -86,7 +86,7 @@ logging.info(args.user + ', successfully logged to Nessus Scanner ' + securityCe
 
 #Read the repositories Nessus Security Center contains, such as QA, Dev, Stage, Prod, etc. 
 repos = securityCenterAPI.get_respository_fields();
-loggign.info(args.user + ', Nessus Security Center repositories are ' + str(repos))
+logging.info(args.user + ', Nessus Security Center repositories are ' + str(repos))
 
 transformed_repos = securityCenterAPI.transformRepositoriesForAcceptRisk(repos);
 logging.debug('Repository data transformed into a format for accept_risk API: ' + str(transformed_repos))
