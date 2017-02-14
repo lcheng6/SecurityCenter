@@ -39,13 +39,15 @@ argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Co
 
 args = argParser.parse_args()
 
+securityCenterInitData = {}
+securityCenterVulnInitData = {}
 
 if args.config :
     configFilePath = r'{0}'.format(args.config)
     configParser.read(configFilePath)
     
     #read the Nessus Security Center parameter section
-    securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
+    securityCenterInitData["host"] = configParser.get('NessusSecurityCenterConfig','host')
     
     #read the Security Center Vulnerability Acceptance section
     securityCenterVulnInitData["vulnAcceptanceListFile"] = configParser.get('NessusSecurityCenterVulnAcceptance', 
