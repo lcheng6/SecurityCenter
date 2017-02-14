@@ -104,7 +104,7 @@ if args.config :
     automationConfiguration["logging_format"] = configParser.get('AutomationConfiguration', 
         'logging_format')
 
-	#Block of code to access Security Center API
+	#Block of code to get Security Center password
     if args.password is None :
         nessus_password = getpass.getpass(args.user + " password:")
     else : 
@@ -116,7 +116,7 @@ logging.basicConfig(filename=automationConfiguration["logging_file"],
     level=logging.DEBUG)
 
 #log attempted signin with username
-logging.info(args.user + ', attempt logging to Nessus Scanner ' + securityCenterInitData["host"])
+logging.info(args.user + ', attempt login to Nessus Scanner ' + securityCenterInitData["host"])
 
 #Log into Nessus Security Center
 securityCenterAPI = signin_to_security_center(securityCenterInitData["host"], args.user, nessus_password)

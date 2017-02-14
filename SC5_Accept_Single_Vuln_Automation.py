@@ -11,13 +11,24 @@ import VulnAcceptanceList
 import time
 
 
+
+#create a SecurityCenterAPI object after signing into security center API
+def signin_to_security_center(securityCenterHost, username, password):
+    securityCenterURL = 'https://' + securityCenterHost
+    securityCenterAPI = SC5API.SecurityCenterAPI()
+    securityCenterAPI.set_url(securityCenterURL)
+    securityCenterAPI.login(username, password)
+
+    return securityCenterAPI;
+
+
 argParser = argparse.ArgumentParser(description='Enter your Nessus Security Center host name, uname, and password')
 pp = pprint.PrettyPrinter(indent=4);
 configParser = ConfigParser.RawConfigParser()
 elasticSearchWindowsSearch = "";
 elasticSearchNonWindowsSearch = "";
 
-vuln_acceptance_deadline = '06.01.2017'
+vuln_acceptance_deadline = '06.02.2017'
 vuln_acceptance_pattern = '%m.%d.%Y'
 
 #parser.add_argument('--schost', dest = 'hostname', type=str, required=True, help='hostname or IP Address of the Nessus Security Center')
@@ -28,42 +39,51 @@ argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Co
 
 args = argParser.parse_args()
 
-securityCenterAPI = SC5API.SecurityCenterAPI()
-cmdbAPIInitData = {}
 
 if args.config :
     configFilePath = r'{0}'.format(args.config)
     configParser.read(configFilePath)
     
+    #read the Nessus Security Center parameter section
     securityCenterHost = configParser.get('NessusSecurityCenterConfig','host')
     
-    cmdbAPIInitData["cmdbElasticSearchURL"] =configParser.get('CMDBElasticSearch','url')
-    cmdbAPIInitData["cmdbElasticSearchIndex"] = configParser.get('CMDBElasticSearch', 'index')
-    cmdbAPIInitData["elasticSearchWindowsSearch"] =configParser.get('CMDBElasticSearch','windows_search_string')
-    cmdbAPIInitData["elasticSearchNonWindowsSearch"] =configParser.get('CMDBElasticSearch','non_windows_search_string')
-    cmdbAPIInitData["elasticSearchSize"]=configParser.get('CMDBElasticSearch','search_size')
-    cmdbAPIInitData["appliance_exclusion_file"]=configParser.get('CMDBElasticSearch', 'appliance_exclusion_file');
-    cmdbAPIInitData["acceptance_list_file"] = configParser.get('NessusSecurityCenterVulnAcceptance', 'vuln_acceptance_list')   
+    #read the Security Center Vulnerability Acceptance section
+    securityCenterVulnInitData["vulnAcceptanceListFile"] = configParser.get('NessusSecurityCenterVulnAcceptance', 
+        'vuln_acceptance_list')
+
+    #read the AutomationConfiguration portion of the log
+    automationConfiguration["logging_file"] = configParser.get('AutomationConfiguration', 
+        'logging_file')
+    automationConfiguration["logging_format"] = configParser.get('AutomationConfiguration', 
+        'logging_format')
+
+    #Block of code to get Security Center's password
+    if args.password is None :
+        nessus_password = getpass.getpass(args.user + " password:")
+    else : 
+        nessus_password = args.password
 
 
-#Block of code to test Security Center API Access
-securityCenterURL = 'https://' + securityCenterHost
-securityCenterAPI.set_url(securityCenterURL)
-securityCenterAPI.login(args.user, args.password)
+#set up basic logging, and logging formatter to add timestamp
+logging.basicConfig(filename=automationConfiguration["logging_file"], 
+    format=automationConfiguration["logging_format"], 
+    level=logging.DEBUG)
 
-#asset_219 = securityCenterAPI.get_asset_by_id(219);
+#log attempted signin with username
+logging.info(args.user + ', attempt login to Nessus Scanner ' + securityCenterInitData["host"])
 
-#pp.pprint(asset_219);
+#Log into Nessus Security Center
+securityCenterAPI = signin_to_security_center(securityCenterInitData["host"], args.user, nessus_password)
 
+#log successful signin with username
+logging.info(args.user + ', successfully logged to Nessus Scanner ' + securityCenterInitData["host"])
 
-#analysis_list_332 = securityCenterAPI.get_analysis_by_id(333)
-#pp.pprint(analysis_list_333);
-
-#this code block runs the accept risk tests 
+#Read the repositories Nessus Security Center contains, such as QA, Dev, Stage, Prod, etc. 
 repos = securityCenterAPI.get_respository_fields();
+loggign.info(args.user + ', Nessus Security Center repositories are ' + str(repos))
+
 transformed_repos = securityCenterAPI.transformRepositoriesForAcceptRisk(repos);
-print "Transfored Repositories:" 
-pp.pprint(transformed_repos);
+logging.debug('Repository data transformed into a format for accept_risk API: ' + str(transformed_repos))
 
 
 vuln_acceptance_epoch = int(time.mktime(time.strptime(
@@ -73,24 +93,22 @@ vuln_acceptance_epoch = int(time.mktime(time.strptime(
 
 vulnList = VulnAcceptanceList.VulnAcceptanceList()
 
-print "Sample Vulnerability from CSV: "
-vulnList.read_csv_file(cmdbAPIInitData["acceptance_list_file"])
+vulnList.read_csv_file(securityCenterVulnInitData["vulnAcceptanceListFile"])
+logging.debug('Read acceptance list file ' + str(securityCenterVulnInitData["vulnAcceptanceListFile"]))
 
 for index in [0, 1]: 
     single_csv_vuln = vulnList.get_row_by_index(index)
-    pp.pprint(single_csv_vuln);
 
-    #print "Sample Accept Vulnerability API Data: "
-    #accept_vuln_post_data = transform_csv_entry_to_api_data(single_csv_vuln, transformed_repos, -1);
-    #pp.pprint(accept_vuln_post_data);
+    logging.info('Read single entry from vulnerability CSV file: ' + str(single_csv_vuln))
 
-    #print "Accept Vulnerability API Result Data: "
-    #result = securityCenterAPI.postAcceptRiskSingleItem(accept_vuln_post_data);
-    #pp.pprint(result);
-
+    #if the field AcceptRisk is Yes, proceed to enter the risk into the risk acceptance repo
     if (single_csv_vuln["AcceptRisk"].lower() == "yes"):
-        print "Accept Vulnerability API for PlugIn ID: " + str(single_csv_vuln['Plugin']);
+        logging.info(args.user, " accept Vulnerability API for PlugIn ID " + str(single_csv_vuln['Plugin'] +
+            " with comments: " + single_csv_vuln['Comments'] + 
+            " on repos: " + str(transformed_repos)))
+        #TODO: modify the printout of transformed_repos
 
+        #log risk acceptance in all repos. 
         result = securityCenterAPI.acceptRiskSingleItem(
                 pluginId = single_csv_vuln['Plugin'], #pluginId
                 comments = single_csv_vuln['Comments'],
@@ -100,7 +118,9 @@ for index in [0, 1]:
                 repositories = transformed_repos
             );
 
-    else:
-        print "Do not accept Vulnerability with PlugIn ID: " + str(single_csv_vuln['Plugin'])
+        #log the Nessus API reply to risk acceptance
+        logging.info(args.user, "Nessus Accept Risk API reply: " + str(result))
 
-    #pp.pprint(result);
+    else:
+        logging.info(args.user, " did not accept Vulnerability with PlugIn ID: " + str(single_csv_vuln['Plugin'])
+
