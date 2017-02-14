@@ -9,6 +9,9 @@ import urllib2
 import CMDBInventory
 import VulnAcceptanceList
 import time
+import csv
+import getpass
+import logging
 
 
 
