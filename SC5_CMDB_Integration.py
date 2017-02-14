@@ -120,10 +120,10 @@ logging.info(args.user + ',' + 'successfully logged to Nessus Scanner ' + securi
 
 #Get the linux asset from Security Center API
 linux_asset = securityCenterAPI.get_asset_by_id(securityCenterInitData["linuxAssetId"])
-logging.debug('linuxAssetId: ' + str(linux_asset))
+logging.debug(args.user, + ', Nessus Security Center Linux Asset: ' + str(linux_asset))
 #Get the linux asset from Security Center API
 windows_asset = securityCenterAPI.get_asset_by_id(securityCenterInitData["windowsAssetId"])
-logging.debug('windowsAssetId: ' + str(windows_asset))
+logging.debug(args.user, + ', Nessus Security Center Windows Asset: ' + str(windows_asset))
 
 #log successful read from an CMDB
 logging.info('attempt to read windows and linux hosts from CMDB')
