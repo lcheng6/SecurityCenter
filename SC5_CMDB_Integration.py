@@ -108,13 +108,13 @@ if args.config :
         nessus_password = args.password
 
 #log attempted signin with username
-logging.info(args.user + ',' + 'attempt logging to Nessus Scanner ' + securityCenterInitData["host"])
+logging.info(args.user + ', attempt logging to Nessus Scanner ' + securityCenterInitData["host"])
 
 #Log into Nessus Security Center
 securityCenterAPI = signin_to_security_center(securityCenterInitData["host"], args.user, nessus_password)
 
 #log successful signin with username
-logging.info(args.user + ',' + 'successfully logged to Nessus Scanner ' + securityCenterInitData["host"])
+logging.info(args.user + ', successfully logged to Nessus Scanner ' + securityCenterInitData["host"])
 
 #save a back up of assets from the security center
 
@@ -136,7 +136,7 @@ logging.info('read linux IPs from CMDB: [' + ','.join(windowsIPs) + ']' )
 update_asset = prompt_user_to_update_asset(securityCenterInitData["windowsAssetId"], windows_asset['name'], windowsIPs)
 if(update_asset == True):
     #logging acceptance of windows update 
-    logging.info(args.user + ' has accepted windows update')
+    logging.info(args.user + ', accepted windows update')
     #logging the windows asset update attempt
     logging.info(args.user + ', ' + str(securityCenterInitData["windowsAssetId"]) + ', ' + 
         windows_asset['name'] + ', update with static IPs [' + str(windowsIPs) + ']');

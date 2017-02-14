@@ -22,7 +22,7 @@ vuln_acceptance_pattern = '%m.%d.%Y'
 
 #parser.add_argument('--schost', dest = 'hostname', type=str, required=True, help='hostname or IP Address of the Nessus Security Center')
 argParser.add_argument('-u', dest = 'user', type=str, required=True, help='Nessus Security Center username')
-argParser.add_argument('-p', dest = 'password', type=str, required=True, help='Password')
+argParser.add_argument('-p', dest = 'password', type=str, required=False, help='Password')
 argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Configuration File')
 
 
