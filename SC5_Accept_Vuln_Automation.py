@@ -41,6 +41,7 @@ args = argParser.parse_args()
 
 securityCenterInitData = {}
 securityCenterVulnInitData = {}
+automationConfiguration = {}
 
 if args.config :
     configFilePath = r'{0}'.format(args.config)
@@ -97,6 +98,7 @@ vulnList = VulnAcceptanceList.VulnAcceptanceList()
 
 vulnList.read_csv_file(securityCenterVulnInitData["vulnAcceptanceListFile"])
 logging.debug('Read acceptance list file ' + str(securityCenterVulnInitData["vulnAcceptanceListFile"]))
+
 
 for index in [0, 1]: 
     single_csv_vuln = vulnList.get_row_by_index(index)
