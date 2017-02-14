@@ -110,7 +110,7 @@ for index in [0, 1]:
 
     #if the field AcceptRisk is Yes, proceed to enter the risk into the risk acceptance repo
     if (single_csv_vuln["AcceptRisk"].lower() == "yes"):
-        logging.info(args.user, " accept Vulnerability API for PlugIn ID " + str(single_csv_vuln['Plugin']) +
+        logging.info(args.user + " accept Vulnerability API for PlugIn ID " + str(single_csv_vuln['Plugin']) +
             " with comments: " + single_csv_vuln['Comments'] + 
             " on repos: " + str(transformed_repos))
         #TODO: modify the printout of transformed_repos
@@ -126,7 +126,7 @@ for index in [0, 1]:
             );
 
         #log the Nessus API reply to risk acceptance
-        logging.info(args.user, "Nessus Accept Risk API reply: " + str(result))
+        logging.info(args.user + "Nessus Accept Risk API reply: " + str(result))
 
     else:
-        logging.info(args.user, " did not accept Vulnerability with PlugIn ID: " + str(single_csv_vuln['Plugin']))
+        logging.info(args.user + " did not accept Vulnerability with PlugIn ID: " + str(single_csv_vuln['Plugin']))
