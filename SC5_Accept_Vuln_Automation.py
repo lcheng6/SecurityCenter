@@ -126,7 +126,7 @@ for index in [0, 1]:
             );
 
         #log the Nessus API reply to risk acceptance
-        logging.info(args.user + "Nessus Accept Risk API reply: " + str(result))
+        logging.info(args.user + " Nessus Accept Risk API reply: " + str(result))
 
     else:
         logging.info(args.user + " did not accept Vulnerability with PlugIn ID: " + str(single_csv_vuln['Plugin']))

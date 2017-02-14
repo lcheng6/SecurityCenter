@@ -146,13 +146,14 @@ if(update_asset == True):
     #logging acceptance of windows update 
     logging.info(args.user + ', accepted windows update')
     #logging the windows asset update attempt
-    logging.info(args.user + ', ' + str(securityCenterInitData["windowsAssetId"]) + ', ' + 
-        windows_asset['name'] + ', update with static IPs [' + str(windowsIPs) + ']');
+    logging.info(args.user + ', ' + windows_asset['name'] + ', (' +
+        str(securityCenterInitData["windowsAssetId"]) + '), ' + 
+        ', update with static IPs [' + str(windowsIPs) + ']');
     update_result= SecurityCenterAPI.update_hosts_by_asset_id(securityCenterInitData["windowsAssetId"], windowsIPs)
     
     #logging the Nessus SSC response to windows asset update
     logging.info(args.user + ', ' + str(securityCenterInitData["windowsAssetId"]) + ', ' + 
-        windows_asset['name'] + 'Nessus Security Center Response: ' + str(update_result))
+        windows_asset['name'] + ' Nessus Security Center Response: ' + str(update_result))
 else:
     #log user did not choose to update
     logging.info(args.user + ' did not accept windows update');
@@ -162,8 +163,9 @@ if(update_asset == True):
     #logging acceptance of linux asset update 
     logging.info(args.user + ' has accepted windows update');
     #logging the linux asset update attempt
-    logging.info(args.user + ', ' + str(securityCenterInitData["linuxAssetId"]) + ', ' + 
-        linux_asset['name'] + ', [' + str(linuxIPs) + ']');
+    logging.info(args.user + ', ' + linux_asset['name'] + ', (' + 
+        str(securityCenterInitData["linuxAssetId"]) + '), ' + 
+        ', [' + str(linuxIPs) + ']');
     update_result= SecurityCenterAPI.update_hosts_by_asset_id(securityCenterInitData["linuxAssetId"], linuxIPs)
 
     #logging the Nessus SSC response to linux asset update
