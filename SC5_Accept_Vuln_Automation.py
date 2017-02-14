@@ -110,9 +110,9 @@ for index in [0, 1]:
 
     #if the field AcceptRisk is Yes, proceed to enter the risk into the risk acceptance repo
     if (single_csv_vuln["AcceptRisk"].lower() == "yes"):
-        logging.info(args.user, " accept Vulnerability API for PlugIn ID " + str(single_csv_vuln['Plugin'] +
+        logging.info(args.user, " accept Vulnerability API for PlugIn ID " + str(single_csv_vuln['Plugin']) +
             " with comments: " + single_csv_vuln['Comments'] + 
-            " on repos: " + str(transformed_repos)))
+            " on repos: " + str(transformed_repos))
         #TODO: modify the printout of transformed_repos
 
         #log risk acceptance in all repos. 
