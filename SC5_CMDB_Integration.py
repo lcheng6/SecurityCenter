@@ -70,10 +70,7 @@ argParser.add_argument('-c', dest = 'config', type =str, required=True, help='Co
 
 args = argParser.parse_args()
 
-#set up basic logging, and logging formatter to add timestamp
-logging.basicConfig(filename='./NessusCMDBAutomation.log', 
-    format='%(asctime)s - %(levelname)s - %(message)s', 
-    level=logging.DEBUG)
+
 
 #this block of code gets all the program parameters 
 cmdbAPIInitData = {}
@@ -101,11 +98,22 @@ if args.config :
     securityCenterVulnInitData["vulnAcceptanceListFile"] = configParser.get('NessusSecurityCenterVulnAcceptance', 
         'vuln_acceptance_list')
 
+    #read the AutomationConfiguration portion of the log
+    automationConfiguration["logging_file"] = configParser.get('AutomationConfiguration', 
+        'logging_file')
+    automationConfiguration["logging_format"] = configParser.get('AutomationConfiguration', 
+        'logging_format')
+
 	#Block of code to access Security Center API
     if args.password is None :
         nessus_password = getpass.getpass(args.user + " password:")
     else : 
         nessus_password = args.password
+
+#set up basic logging, and logging formatter to add timestamp
+logging.basicConfig(filename=automationConfiguration["logging_file"], 
+    format=automationConfiguration["logging_format"], 
+    level=logging.DEBUG)
 
 #log attempted signin with username
 logging.info(args.user + ', attempt logging to Nessus Scanner ' + securityCenterInitData["host"])
