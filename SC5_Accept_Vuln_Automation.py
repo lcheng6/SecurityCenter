@@ -109,7 +109,7 @@ for index in range(0, vulnList.get_row_count()) :
     logging.info('Read single entry from vulnerability CSV file: ' + str(single_csv_vuln))
 
     #if the field AcceptRisk is Yes, proceed to enter the risk into the risk acceptance repo
-    if (single_csv_vuln["AcceptRisk"].lower() == "yes"):
+    if ( ("AcceptRisk" in single_csv_vuln) and (single_csv_vuln["AcceptRisk"].lower() == "yes")):
         logging.info(args.user + " accept Vulnerability API for PlugIn ID " + str(single_csv_vuln['Plugin']) +
             " with comments: " + single_csv_vuln['Comments'] + 
             " on repos: " + str(transformed_repos))
