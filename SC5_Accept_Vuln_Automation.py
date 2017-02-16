@@ -103,7 +103,7 @@ vulnList.read_csv_file(securityCenterVulnInitData["vulnAcceptanceListFile"])
 logging.debug('Read acceptance list file ' + str(securityCenterVulnInitData["vulnAcceptanceListFile"]))
 
 
-for index in [0, 1]: 
+for index in range(0, vulnList.get_row_count()) : 
     single_csv_vuln = vulnList.get_row_by_index(index)
 
     logging.info('Read single entry from vulnerability CSV file: ' + str(single_csv_vuln))
